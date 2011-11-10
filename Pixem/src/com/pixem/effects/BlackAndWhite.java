@@ -29,21 +29,22 @@ package com.pixem.effects;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 
-import com.pixem.core.Effect;
 
 public class BlackAndWhite implements Effect {
 	
 	private Bitmap bm;
 
-	public BlackAndWhite(Bitmap bm) { 
-		this.bm = bm;
+	public BlackAndWhite() { 
 	}
 	
-	public Bitmap applyEffect() { 
+	public Bitmap applyEffect(Bitmap bm) { 
 		
 		int clr, red = 0, blue = 0, green = 0;
 		
 		if (bm != null) { 
+			
+			setBitmap(bm);
+			
 			for (int i = 0; i < bm.getWidth(); i++) { 
 				for (int j = 0; j < bm.getHeight(); j++) { 
 					clr = bm.getPixel(i, j);
@@ -62,5 +63,14 @@ public class BlackAndWhite implements Effect {
 		return null;
 	}
 
+	@Override
+	public void setBitmap(Bitmap bm) { 
+		this.bm = bm;
+	}
+	
+	@Override
+	public Bitmap getBitmap() { 
+		return bm;
+	}
 }
 

@@ -29,7 +29,6 @@ package com.pixem.effects;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 
-import com.pixem.core.Effect;
 
 /**
  * @author 10107896
@@ -50,9 +49,6 @@ public class Contrast implements Effect {
 		return contrastFactor;
 	}
 	
-	public void setImage(Bitmap bm) { 
-		this.bm = bm;
-	}
 	
 	public void setLowBrightContrast (boolean isLowLevel) { 
 		this.isLowLevel = isLowLevel;
@@ -62,7 +58,7 @@ public class Contrast implements Effect {
 	 * @see com.android.pixem.org.Effect#applyEffect()
 	 */
 	@Override
-	public Bitmap applyEffect() {
+	public Bitmap applyEffect(Bitmap bm) {
         
 		int color;
 		double red = 0.0, blue = 0.0, green = 0.0, contrast;
@@ -74,6 +70,8 @@ public class Contrast implements Effect {
 		}
 		
 		if (bm != null) { 
+			
+			setBitmap(bm);
 			
 			for (int x = 0; x < bm.getWidth(); x++) { 
 				for (int y = 0; y < bm.getHeight(); y++) { 
@@ -130,4 +128,13 @@ public class Contrast implements Effect {
 		return null;
 	}
 
+	@Override
+	public void setBitmap(Bitmap bm) { 
+		this.bm = bm;
+	}
+	
+	@Override
+	public Bitmap getBitmap() { 
+		return bm;
+	}
 }

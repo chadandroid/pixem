@@ -30,8 +30,7 @@ import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
 import android.graphics.Color;
 
-import com.pixem.core.Effect;
-import com.pixem.core.PictureMatrix;
+import com.pixem.utility.PictureMatrix;
 
 /**
  * @author 10107896
@@ -41,18 +40,20 @@ public class Smooth implements Effect {
 
 	private Bitmap bm = null;
 	
-	public Smooth (Bitmap bm) { 
-		this.bm = bm;
+	public Smooth () { 
 	}
 	
 	/* (non-Javadoc)
 	 * @see com.android.pixem.org.Effect#applyEffect()
 	 */
 	@Override
-	public Bitmap applyEffect() {
+	public Bitmap applyEffect(Bitmap bm) {
 		
 
 		if (bm != null) { 
+			
+			setBitmap(bm);
+			
 			Bitmap modifiedBitmap = bm.copy(Config.ARGB_8888, true);
 	        
 			PictureMatrix m = new PictureMatrix();
@@ -126,5 +127,14 @@ public class Smooth implements Effect {
 		return null;
 	}
 
+	@Override
+	public void setBitmap(Bitmap bm) { 
+		this.bm = bm;
+	}
+	
+	@Override
+	public Bitmap getBitmap() { 
+		return bm;
+	}
 }
 

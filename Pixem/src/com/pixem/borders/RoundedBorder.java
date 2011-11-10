@@ -29,13 +29,13 @@ package com.pixem.borders;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
 
-import com.pixem.core.Effect;
+import com.pixem.effects.Effect;
 
 /**
  * @author 10107896
  *
  */
-public class RoundedBorder implements Effect {
+public class RoundedBorder implements Border {
 
 	
 	private int arcWidth, arcHeight, borderColor;
@@ -77,9 +77,11 @@ public class RoundedBorder implements Effect {
 	 * @see com.photoedit.pixem.org.Effect#applyEffect()
 	 */
 	@Override
-	public Bitmap applyEffect() {
+	public Bitmap generateBorder(Bitmap bm) {
 		
 		 if (bm != null && borderColor != 0 && arcHeight != 0 && arcWidth != 0) { 
+			 
+			 setBitmap(bm);
 				Bitmap modifiedBitmap = bm.copy(Config.ARGB_8888, true);
 				
 				
@@ -89,5 +91,13 @@ public class RoundedBorder implements Effect {
 		return null;
 	}
 	
+	@Override
+	public void setBitmap(Bitmap bm) { 
+		this.bm = bm;
+	}
 	
+	@Override
+	public Bitmap getBitmap() { 
+		return bm;
+	}
 }

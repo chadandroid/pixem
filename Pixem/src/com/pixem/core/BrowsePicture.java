@@ -33,7 +33,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 
-import com.pixem.R;
+import com.photoedit.pixem.R;
 
 /**
  * @author 10107896
