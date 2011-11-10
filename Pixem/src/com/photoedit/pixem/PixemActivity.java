@@ -9,11 +9,11 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 
-import com.photoedit.pixem.PictureEffects.BlackAndWhite;
-import com.photoedit.pixem.PictureEffects.Contrast;
-import com.photoedit.pixem.PictureEffects.Sepia;
-import com.photoedit.pixem.PictureEffects.Smooth;
 import com.photoedit.pixem.borders.StraightBorder;
+import com.photoedit.pixem.effects.BlackAndWhite;
+import com.photoedit.pixem.effects.Contrast;
+import com.photoedit.pixem.effects.Sepia;
+import com.photoedit.pixem.effects.Smooth;
 
 public class PixemActivity extends Activity {
 	private Button btnGreyScale, btnSepia, btnContrastBrighter, btnContrastDimmer, btnSmooth, btnRectangleBorder, btnRoundedBorder;

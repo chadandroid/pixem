@@ -24,12 +24,12 @@
  *
  *
  */
-package com.photoedit.pixem.PictureEffects;
+package com.photoedit.pixem.effects;
 
 import android.graphics.Bitmap;
 import android.graphics.Color;
 
-import com.photoedit.pixem.org.Effect;
+import com.photoedit.pixem.core.Effect;
 
 /**
  * @author 10107896
