@@ -24,7 +24,7 @@
  *
  *
  */
-package com.photoedit.pixem.org;
+package com.photoedit.pixem.core;
 
 import android.app.Activity;
 import android.content.Intent;

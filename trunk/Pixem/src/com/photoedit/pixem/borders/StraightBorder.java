@@ -30,7 +30,7 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Bitmap.Config;
 
-import com.photoedit.pixem.org.Effect;
+import com.photoedit.pixem.core.Effect;
 
 /**
  * @author 10107896
