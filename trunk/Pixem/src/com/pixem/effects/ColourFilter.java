@@ -12,7 +12,7 @@
  * disclosed, duplicated, and/or reversed engineered except in accordance
  * with the express written authorization of Envision Mobile Ltd.
  *
- * Module: Border.java
+ * Module: ColourFilter.java
  * Project: Pixem
  *
  * Description:
@@ -24,20 +24,57 @@
  *
  *
  */
-package com.pixem.borders;
+package com.pixem.effects;
 
 import android.graphics.Bitmap;
+import android.graphics.Bitmap.Config;
 
 /**
  * @author 10107896
  *
  */
-public interface Border {
+public class ColourFilter implements Effect {
 
+	private Bitmap bm;
+	private int colour;
 	
-	public Bitmap generateBorder(Bitmap bm);
-	public Bitmap generateBorder (int width, int height);
+	public ColourFilter(int colourChoice) { 
+		colour = colourChoice;
+	}
+
+	public void setColour (int colour) { 
+		this.colour = colour;
+	}
 	
-	public void setBitmap(Bitmap bm);
-	public Bitmap getBitmap();
+	public int getColour() { 
+		return colour;
+	}
+	
+	@Override
+	public Bitmap applyEffect(Bitmap bm) {
+		
+		if (bm != null) { 
+			setBitmap(bm);
+			
+			Bitmap modifiedBitmap = bm.copy(Config.ARGB_8888, true);
+			
+			
+			
+		}
+		
+		return null;
+	}
+
+	@Override
+	public void setBitmap(Bitmap bm) {
+		
+	}
+
+	@Override
+	public Bitmap getBitmap() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	
 }

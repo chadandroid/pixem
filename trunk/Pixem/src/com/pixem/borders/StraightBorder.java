@@ -40,13 +40,12 @@ public class StraightBorder implements Border {
 	private Bitmap bm;
 	
 	public StraightBorder() { 
-		this (0, 0, null);
+		this (0, 0);
 	}
 	
-	public StraightBorder (int color, int frameSize, Bitmap bm) { 
+	public StraightBorder (int color, int frameSize) { 
 		this.color = color;
 		this.frameSize = frameSize;
-		this.bm = bm;
 	}
 	
 	public void setFrameSize(int frameSize) { 
@@ -67,8 +66,44 @@ public class StraightBorder implements Border {
 
 
 	@Override
-	public Bitmap generateBorder(Bitmap bm) {
+	public Bitmap generateBorder(int width, int height) {
 		
+		if (bm != null && color != 0 && frameSize != 0) { 
+			
+			setBitmap(bm);
+			
+			Bitmap modifiedBitmap = bm.copy(Config.ARGB_8888, true);
+			
+			for (int i = 0; i < modifiedBitmap.getWidth(); i++) { 
+				for (int j = 0; j < modifiedBitmap.getHeight(); j++) { 
+	                if (i < width / 2 || j < height / 2 || i > bm.getWidth() - width / 2
+	                        || j > bm.getHeight() - height / 2) {
+	                	modifiedBitmap.setPixel(i, j, color);
+	                } else {
+	                	modifiedBitmap.setPixel(i, j, bm.getPixel(i, j));
+	                }
+				}
+			}
+			
+			return modifiedBitmap;
+		}
+		
+		return null;
+	}
+	
+	@Override
+	public void setBitmap(Bitmap bm) { 
+		this.bm = bm;
+	}
+	
+	@Override
+	public Bitmap getBitmap() { 
+		return bm;
+	}
+
+
+	@Override
+	public Bitmap generateBorder(Bitmap bm) {
 		if (bm != null && color != 0 && frameSize != 0) { 
 			
 			setBitmap(bm);
@@ -89,17 +124,6 @@ public class StraightBorder implements Border {
 			return modifiedBitmap;
 		}
 		
-		
 		return null;
-	}
-	
-	@Override
-	public void setBitmap(Bitmap bm) { 
-		this.bm = bm;
-	}
-	
-	@Override
-	public Bitmap getBitmap() { 
-		return bm;
 	}
 }

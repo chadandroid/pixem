@@ -399,6 +399,7 @@ public class PictureEffects {
 		    }
 
 		    public void makeBlur() {
+		    
 		    }
 
 		    public void addRectangleBorder(int frameSize, Color c) {
