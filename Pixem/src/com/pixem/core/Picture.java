@@ -12,7 +12,7 @@
  * disclosed, duplicated, and/or reversed engineered except in accordance
  * with the express written authorization of Envision Mobile Ltd.
  *
- * Module: Border.java
+ * Module: Picture.java
  * Project: Pixem
  *
  * Description:
@@ -24,20 +24,53 @@
  *
  *
  */
-package com.pixem.borders;
+package com.pixem.core;
 
 import android.graphics.Bitmap;
+import android.graphics.Bitmap.Config;
+
+import com.pixem.borders.Border;
+import com.pixem.effects.Effect;
 
 /**
  * @author 10107896
  *
  */
-public interface Border {
+public class Picture {
+	
+	private Bitmap original;
+	private Bitmap current;
+	private Bitmap border;
+	
+	public Picture (Bitmap bm) { 
+		original = bm.copy(Config.ARGB_8888, true);
+		current = bm.copy(Config.ARGB_8888, true);
+	}
+	
+	public void applyEffect(Effect effect) {
+		current = effect.applyEffect(current);
+	}
 
+	public void addBorder(Border border) {
+		this.border = border.generateBorder(original.getWidth(), original.getHeight());
+	}
+
+	public void removeBorder() {
+		border = null;
+	}
+
+	public void revert() {
+		current = original.copy(Config.ARGB_8888, true);
+	}
+
+	public void draw() {
+/*		draw(current);
+
+		if(border != null) {
+			draw(border);
+		}*/
+	}
 	
-	public Bitmap generateBorder(Bitmap bm);
-	public Bitmap generateBorder (int width, int height);
 	
-	public void setBitmap(Bitmap bm);
-	public Bitmap getBitmap();
+
 }

@@ -58,7 +58,6 @@ public class Smooth implements Effect {
 	        
 			PictureMatrix m = new PictureMatrix();
 	        int red = 0, green = 0, blue = 0;
-	        //double [][] colours = new double[m.getMatrixSize()][m.getMatrixSize()];
 
 	        int matrixSize = m.getMatrixSize();
 
