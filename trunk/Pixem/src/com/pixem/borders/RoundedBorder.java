@@ -24,12 +24,12 @@
  *
  *
  */
-package com.photoedit.pixem.borders;
+package com.pixem.borders;
 
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
 
-import com.photoedit.pixem.core.Effect;
+import com.pixem.core.Effect;
 
 /**
  * @author 10107896

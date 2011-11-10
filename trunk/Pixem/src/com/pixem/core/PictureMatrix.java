@@ -27,7 +27,7 @@ such
  *
  *
  */
-package com.photoedit.pixem.core;
+package com.pixem.core;
 
 /**
 * @author 10107896
