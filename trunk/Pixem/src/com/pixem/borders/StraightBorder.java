@@ -27,16 +27,13 @@
 package com.pixem.borders;
 
 import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.graphics.Bitmap.Config;
-
-import com.pixem.core.Effect;
 
 /**
  * @author 10107896
  *
  */
-public class StraightBorder implements Effect {   
+public class StraightBorder implements Border {   
 
 	private int color;
 	private int frameSize;
@@ -60,10 +57,6 @@ public class StraightBorder implements Effect {
 		this.color = color;
 	}
 	
-	public void setBitmap(Bitmap bm) { 
-		this.bm = bm;
-	}
-	
 	public int getColor() { 
 		return color;
 	}
@@ -71,18 +64,14 @@ public class StraightBorder implements Effect {
 	public int getFrameSize() { 
 		return frameSize;
 	}
-	
-	public Bitmap getBitmap() { 
-		return bm;
-	}
 
-	/* (non-Javadoc)
-	 * @see com.photoedit.pixem.org.Effect#applyEffect()
-	 */
+
 	@Override
-	public Bitmap applyEffect() {
+	public Bitmap generateBorder(Bitmap bm) {
 		
 		if (bm != null && color != 0 && frameSize != 0) { 
+			
+			setBitmap(bm);
 			
 			Bitmap modifiedBitmap = bm.copy(Config.ARGB_8888, true);
 			
@@ -104,5 +93,13 @@ public class StraightBorder implements Effect {
 		return null;
 	}
 	
+	@Override
+	public void setBitmap(Bitmap bm) { 
+		this.bm = bm;
+	}
 	
+	@Override
+	public Bitmap getBitmap() { 
+		return bm;
+	}
 }

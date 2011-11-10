@@ -9,7 +9,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 
-import com.pixem.R;
+import com.photoedit.pixem.R;
 import com.pixem.borders.StraightBorder;
 import com.pixem.effects.BlackAndWhite;
 import com.pixem.effects.Contrast;
@@ -55,10 +55,10 @@ public class PixemActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				
-				BlackAndWhite greyScale = new BlackAndWhite(img.getDrawingCache());
+				BlackAndWhite greyScale = new BlackAndWhite();
 				
-				if (greyScale.applyEffect() != null) { 
-					img.setImageBitmap(greyScale.applyEffect());
+				if (greyScale.applyEffect(img.getDrawingCache()) != null) { 
+					img.setImageBitmap(greyScale.applyEffect(img.getDrawingCache()));
 				}
 				
 			}
@@ -69,10 +69,10 @@ public class PixemActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				
-				Sepia sepia = new Sepia (img.getDrawingCache());
+				Sepia sepia = new Sepia ();
 				
-				if (sepia.applyEffect() != null) { 
-					img.setImageBitmap(sepia.applyEffect());
+				if (sepia.applyEffect(img.getDrawingCache()) != null) { 
+					img.setImageBitmap(sepia.applyEffect(img.getDrawingCache()));
 				}
 			}
 		});
@@ -81,12 +81,12 @@ public class PixemActivity extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				contrast.setImage(img.getDrawingCache());
+				contrast.setBitmap(img.getDrawingCache());
 				contrast.setContrast(75);
 				contrast.setLowBrightContrast(false);
 				
-				if (contrast.applyEffect() != null) { 
-					img.setImageBitmap(contrast.applyEffect());
+				if (contrast.applyEffect(img.getDrawingCache()) != null) { 
+					img.setImageBitmap(contrast.applyEffect(img.getDrawingCache()));
 				}
 			}
 		});
@@ -95,12 +95,12 @@ public class PixemActivity extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				contrast.setImage(img.getDrawingCache());
+				contrast.setBitmap(img.getDrawingCache());
 				contrast.setContrast(15);
 				contrast.setLowBrightContrast(false);
 				
-				if (contrast.applyEffect() != null) { 
-					img.setImageBitmap(contrast.applyEffect());
+				if (contrast.applyEffect(img.getDrawingCache()) != null) { 
+					img.setImageBitmap(contrast.applyEffect(img.getDrawingCache()));
 				}
 			}
 		});
@@ -109,10 +109,10 @@ public class PixemActivity extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				Smooth smooth = new Smooth(img.getDrawingCache());
+				Smooth smooth = new Smooth();
 				
-				if (smooth.applyEffect() != null) { 
-					img.setImageBitmap(smooth.applyEffect());
+				if (smooth.applyEffect(img.getDrawingCache()) != null) { 
+					img.setImageBitmap(smooth.applyEffect(img.getDrawingCache()));
 				}
 			}
 		});
@@ -122,8 +122,8 @@ public class PixemActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				StraightBorder border = new StraightBorder(Color.RED, 25, img.getDrawingCache());
-				if (border.applyEffect() != null) { 
-					img.setImageBitmap(border.applyEffect());
+				if (border.generateBorder(img.getDrawingCache()) != null) { 
+					img.setImageBitmap(border.generateBorder(img.getDrawingCache()));
 				}
 			}
 		});
