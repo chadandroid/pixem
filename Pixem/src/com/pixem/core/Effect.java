@@ -24,7 +24,7 @@
  *
  *
  */
-package com.photoedit.pixem.core;
+package com.pixem.core;
 
 import android.graphics.Bitmap;
 

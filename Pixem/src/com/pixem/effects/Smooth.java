@@ -24,14 +24,14 @@
  *
  *
  */
-package com.photoedit.pixem.effects;
+package com.pixem.effects;
 
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
 import android.graphics.Color;
 
-import com.photoedit.pixem.core.Effect;
-import com.photoedit.pixem.core.PictureMatrix;
+import com.pixem.core.Effect;
+import com.pixem.core.PictureMatrix;
 
 /**
  * @author 10107896

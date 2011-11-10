@@ -24,7 +24,7 @@
  *
  *
  */
-package com.photoedit.pixem.effects;
+package com.pixem.effects;
 
 /**
  * @author 10107896
