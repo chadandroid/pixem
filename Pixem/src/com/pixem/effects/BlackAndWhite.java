@@ -27,6 +27,7 @@
 package com.pixem.effects;
 
 import android.graphics.Bitmap;
+import android.graphics.Bitmap.Config;
 import android.graphics.Color;
 
 
@@ -45,19 +46,21 @@ public class BlackAndWhite implements Effect {
 			
 			setBitmap(bm);
 			
+			Bitmap modifiedBitmap = bm.copy(Config.ARGB_8888, true);
+			
 			for (int i = 0; i < bm.getWidth(); i++) { 
 				for (int j = 0; j < bm.getHeight(); j++) { 
-					clr = bm.getPixel(i, j);
+					clr = modifiedBitmap.getPixel(i, j);
 					
 	                red = Color.red(clr);
 	            	green = Color.green(clr);
 	            	blue = Color.blue(clr);
 	            	
-	            	bm.setPixel(i, j, Color.argb(Color.alpha(clr), ((red + green + blue)/3), ((red + green + blue)/3), ((red + green + blue)/3)));
+	            	modifiedBitmap.setPixel(i, j, Color.argb(Color.alpha(clr), ((red + green + blue)/3), ((red + green + blue)/3), ((red + green + blue)/3)));
 				}
 			}
 			
-			return bm;
+			return modifiedBitmap;
 		}
 
 		return null;

@@ -19,10 +19,11 @@ import com.pixem.effects.Contrast;
 import com.pixem.effects.Effect;
 import com.pixem.effects.Sepia;
 import com.pixem.effects.Smooth;
+import com.pixem.utility.Utility;
 
 public class PixemActivity extends Activity {
 	private Button btnGreyScale, btnSepia, btnContrastBrighter,
-			btnContrastDimmer, btnSmooth, btnRectangleBorder, btnRoundedBorder, btnColourFilter;
+			btnContrastDimmer, btnSmooth, btnRectangleBorder, btnRoundedBorder, btnColourFilter, btnDuplicate;
 	private ImageView img;
 
 	@Override
@@ -42,6 +43,7 @@ public class PixemActivity extends Activity {
 		btnRectangleBorder = (Button) findViewById(R.id.btnRectangleBorder);
 		btnRoundedBorder = (Button) findViewById(R.id.btnRoundedBorder);
 		btnColourFilter = (Button) findViewById (R.id.btnColourFilter);
+		btnDuplicate = (Button) findViewById (R.id.btnDuplicate);
 	}
 
 	@Override
@@ -156,6 +158,18 @@ public class PixemActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				Effect ColourFilter = new ColourFilter(Color.RED);
+				
+				if (Utility.switchBlueGreen(img.getDrawingCache()) != null) { 
+					img.setImageBitmap(Utility.switchBlueGreen(img.getDrawingCache()));
+				}
+			}
+		});
+		
+		btnDuplicate.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
 				
 			}
 		});

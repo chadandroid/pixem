@@ -50,7 +50,7 @@
 		android:layout_marginLeft="10dp"
 		android:orientation="horizontal"
 		android:layout_width="wrap_content"
-		android:layout_height="fill_parent">
+		android:layout_height="wrap_content">
 		<Button
 			android:id="@+id/btnSmooth"
 			android:layout_height="wrap_content"
@@ -75,8 +75,13 @@
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content">
 		<Button
-			android:text="Greyscale"
+			android:text="Colour Filter"
 			android:id="@+id/btnColourFilter"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"></Button>
+		<Button
+			android:text="Duplicate"
+			android:id="@+id/btnDuplicate"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"></Button>
 	</LinearLayout>

@@ -79,8 +79,8 @@ public class RoundedBorder implements Border {
 		return arcHeight;
 	}
 
-	/* (non-Javadoc)
-	 * @see com.photoedit.pixem.org.Effect#applyEffect()
+	/*
+	 * http://ruibm.com/?p=184
 	 */
 	@Override
 	public Bitmap generateBorder(int width, int height) {
