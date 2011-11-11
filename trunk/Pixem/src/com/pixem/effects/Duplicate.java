@@ -12,14 +12,14 @@
  * disclosed, duplicated, and/or reversed engineered except in accordance
  * with the express written authorization of Envision Mobile Ltd.
  *
- * Module: ColourFilter.java
+ * Module: Duplicate.java
  * Project: Pixem
  *
  * Description:
  *
  *
  * Developer:   10107896
- * Date:        2011-11-10
+ * Date:        2011-11-11
  * Version:
  *
  *
@@ -33,49 +33,43 @@ import android.graphics.Bitmap.Config;
  * @author 10107896
  *
  */
-public class ColourFilter implements Effect {
+public class Duplicate implements Effect {
 
 	private Bitmap bm;
-	private int colour;
-	
-	public ColourFilter(int colourChoice) { 
-		colour = colourChoice;
-	}
-
-	public void setColour (int colour) { 
-		this.colour = colour;
-	}
-	
-	public int getColour() { 
-		return colour;
-	}
 	
 	@Override
 	public Bitmap applyEffect(Bitmap bm) {
 		
 		if (bm != null) { 
-			setBitmap(bm);
-			
 			Bitmap modifiedBitmap = bm.copy(Config.ARGB_8888, true);
+			//Bitmap collage = new Bitmap();
 			
 			
+			for (int x = 0; x < modifiedBitmap.getWidth(); x++) { 
+				for (int y = 0; y < modifiedBitmap.getHeight(); y++) { 
+
+					for (int k = 0; k < 25; k++) { 
+						
+					}
+					
+				}
+			}
 			
-			
+			return modifiedBitmap;
 		}
 		
 		return null;
 	}
 
-	@Override
-	public void setBitmap(Bitmap bm) {
-		
-	}
 
 	@Override
-	public Bitmap getBitmap() {
-		// TODO Auto-generated method stub
-		return null;
+	public void setBitmap(Bitmap bm) {
+		this.bm = bm;
 	}
 	
-	
+	@Override
+	public Bitmap getBitmap() {
+		return bm;
+	}
+
 }

@@ -27,6 +27,7 @@
 package com.pixem.effects;
 
 import android.graphics.Bitmap;
+import android.graphics.Bitmap.Config;
 import android.graphics.Color;
 
 
@@ -73,10 +74,12 @@ public class Contrast implements Effect {
 			
 			setBitmap(bm);
 			
-			for (int x = 0; x < bm.getWidth(); x++) { 
-				for (int y = 0; y < bm.getHeight(); y++) { 
+			Bitmap modifiedBitmap = bm.copy(Config.ARGB_8888, true);
+			
+			for (int x = 0; x < modifiedBitmap.getWidth(); x++) { 
+				for (int y = 0; y < modifiedBitmap.getHeight(); y++) { 
 					
-					color = bm.getPixel(x, y);
+					color = modifiedBitmap.getPixel(x, y);
 					
 					red = Color.red(color) / 255.0;
 					green = Color.green(color) / 255.0;
@@ -118,11 +121,11 @@ public class Contrast implements Effect {
 	                    blue = 0;
 	                }
 	                
-	                bm.setPixel(x, y, Color.argb(Color.alpha(color), (int)red, (int)green, (int)blue));
+	                modifiedBitmap.setPixel(x, y, Color.argb(Color.alpha(color), (int)red, (int)green, (int)blue));
 				}
 			}
 			
-			return bm;
+			return modifiedBitmap;
 		}
 
 		return null;
