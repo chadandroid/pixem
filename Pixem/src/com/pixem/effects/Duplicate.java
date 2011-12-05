@@ -34,42 +34,21 @@ import android.graphics.Bitmap.Config;
  *
  */
 public class Duplicate implements Effect {
-
-	private Bitmap bm;
 	
 	@Override
 	public Bitmap applyEffect(Bitmap bm) {
+		Bitmap modifiedBitmap = bm.copy(Config.ARGB_8888, true);
 		
-		if (bm != null) { 
-			Bitmap modifiedBitmap = bm.copy(Config.ARGB_8888, true);
-			//Bitmap collage = new Bitmap();
-			
-			
-			for (int x = 0; x < modifiedBitmap.getWidth(); x++) { 
-				for (int y = 0; y < modifiedBitmap.getHeight(); y++) { 
+		for (int x = 0; x < modifiedBitmap.getWidth(); x++) { 
+			for (int y = 0; y < modifiedBitmap.getHeight(); y++) { 
 
-					for (int k = 0; k < 25; k++) { 
-						
-					}
+				for (int k = 0; k < 25; k++) { 
 					
 				}
+				
 			}
-			
-			return modifiedBitmap;
 		}
 		
-		return null;
+		return modifiedBitmap;
 	}
-
-
-	@Override
-	public void setBitmap(Bitmap bm) {
-		this.bm = bm;
-	}
-	
-	@Override
-	public Bitmap getBitmap() {
-		return bm;
-	}
-
 }

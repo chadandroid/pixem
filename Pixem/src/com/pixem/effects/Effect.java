@@ -35,8 +35,5 @@ import android.graphics.Bitmap;
 public interface Effect {
 
 	public Bitmap applyEffect(Bitmap bm);
-	
-	public void setBitmap(Bitmap bm);
-	public Bitmap getBitmap();
-	
+
 }

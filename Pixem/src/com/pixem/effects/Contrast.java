@@ -40,7 +40,6 @@ public class Contrast implements Effect {
 	
 	private int contrastFactor;
 	private boolean isLowLevel = false;
-	private Bitmap bm;
 	
 	public void setContrast(int contrastFactor) { 
 		this.contrastFactor = contrastFactor;
@@ -69,75 +68,58 @@ public class Contrast implements Effect {
 		} else { 
 			contrast = (100.0 + contrastFactor)/100.0;
 		}
+			
+		Bitmap modifiedBitmap = bm.copy(Config.ARGB_8888, true);
 		
-		if (bm != null) { 
-			
-			setBitmap(bm);
-			
-			Bitmap modifiedBitmap = bm.copy(Config.ARGB_8888, true);
-			
-			for (int x = 0; x < modifiedBitmap.getWidth(); x++) { 
-				for (int y = 0; y < modifiedBitmap.getHeight(); y++) { 
-					
-					color = modifiedBitmap.getPixel(x, y);
-					
-					red = Color.red(color) / 255.0;
-					green = Color.green(color) / 255.0;
-					blue = Color.blue(color) / 255.0;
-					
-	                red -= 0.5;
-	                red *= contrast;
-	                red += 0.5;
-	                red *= 255;
-	                
-	                if (red > 255) {
-	                    red = 255;
-	                }
-	                if (red < 0) {
-	                    red = 0;
-	                }
+		for (int x = 0; x < modifiedBitmap.getWidth(); x++) { 
+			for (int y = 0; y < modifiedBitmap.getHeight(); y++) { 
+				
+				color = modifiedBitmap.getPixel(x, y);
+				
+				red = Color.red(color) / 255.0;
+				green = Color.green(color) / 255.0;
+				blue = Color.blue(color) / 255.0;
+				
+                red -= 0.5;
+                red *= contrast;
+                red += 0.5;
+                red *= 255;
+                
+                if (red > 255) {
+                    red = 255;
+                }
+                if (red < 0) {
+                    red = 0;
+                }
 
-	                green -= 0.5;
-	                green *= contrast;
-	                green += 0.5;
-	                green *= 255;
+                green -= 0.5;
+                green *= contrast;
+                green += 0.5;
+                green *= 255;
 
-	                if (green > 255) {
-	                    green = 255;
-	                }
-	                if (green < 0) {
-	                    green = 0;
-	                }
+                if (green > 255) {
+                    green = 255;
+                }
+                if (green < 0) {
+                    green = 0;
+                }
 
-	                blue -= 0.5;
-	                blue *= contrast;
-	                blue += 0.5;
-	                blue *= 255;
+                blue -= 0.5;
+                blue *= contrast;
+                blue += 0.5;
+                blue *= 255;
 
-	                if (blue > 255) {
-	                    blue = 255;
-	                }
-	                if (blue < 0) {
-	                    blue = 0;
-	                }
-	                
-	                modifiedBitmap.setPixel(x, y, Color.argb(Color.alpha(color), (int)red, (int)green, (int)blue));
-				}
+                if (blue > 255) {
+                    blue = 255;
+                }
+                if (blue < 0) {
+                    blue = 0;
+                }
+                
+                modifiedBitmap.setPixel(x, y, Color.argb(Color.alpha(color), (int)red, (int)green, (int)blue));
 			}
-			
-			return modifiedBitmap;
 		}
-
-		return null;
-	}
-
-	@Override
-	public void setBitmap(Bitmap bm) { 
-		this.bm = bm;
-	}
-	
-	@Override
-	public Bitmap getBitmap() { 
-		return bm;
+		
+		return modifiedBitmap;
 	}
 }

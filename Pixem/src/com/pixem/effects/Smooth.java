@@ -37,103 +37,79 @@ import com.pixem.utility.PictureMatrix;
  *
  */
 public class Smooth implements Effect {
-
-	private Bitmap bm = null;
-	
-	public Smooth () { 
-	}
 	
 	/* (non-Javadoc)
 	 * @see com.android.pixem.org.Effect#applyEffect()
 	 */
 	@Override
 	public Bitmap applyEffect(Bitmap bm) {
+		Bitmap modifiedBitmap = bm.copy(Config.ARGB_8888, true);
+        
+		PictureMatrix m = new PictureMatrix();
+        int red = 0, green = 0, blue = 0;
+
+        int matrixSize = m.getMatrixSize();
+
+        double[][] redPixel = new double[matrixSize][matrixSize],
+                greenPixel = new double[matrixSize][matrixSize],
+                bluePixel = new double[matrixSize][matrixSize];
+
+        m.setValues(1);
+        m.setMiddle(8);
+        m.setFactor(9);
 		
+		for (int i = 0; i < modifiedBitmap.getWidth() - 2; i++) { 
+			for (int j = 0; j < modifiedBitmap.getHeight() - 2; j++) { 
+				
+				for (int x = 0; x < matrixSize; x++) { 
+					for (int y = 0; y < matrixSize; y++) { 
+	                    redPixel[x][y] = Color.red(modifiedBitmap.getPixel(i + x, j + y));
+						greenPixel[x][y] = Color.green(modifiedBitmap.getPixel(i + x, j + y));
+						bluePixel[x][y] = Color.blue(modifiedBitmap.getPixel(i + x, j + y));
+						
+                        red = 0;
+                        green = 0;
+                        blue = 0;
 
-		if (bm != null) { 
-			
-			setBitmap(bm);
-			
-			Bitmap modifiedBitmap = bm.copy(Config.ARGB_8888, true);
-	        
-			PictureMatrix m = new PictureMatrix();
-	        int red = 0, green = 0, blue = 0;
+                        for (int k = 0; k < matrixSize; k++) {
+                            for (int n = 0; n < matrixSize; n++) {
+                                red += (int) (redPixel[k][n] * m.matrix[k][n]);
+                                green += (int) (greenPixel[k][n] * m.matrix[k][n]);
+                                blue += (int) (bluePixel[k][n] * m.matrix[k][n]);
+                            }
+                        }
+                        
+                        red = (int) ((red / m.factor) + 5);
+                        if (red > 255) {
+                            red = 255;
+                        }
+                        if (red < 0) {
+                            red = 0;
+                        }
+                        
+                        green = (int) ((green / m.factor) + 5);
+                        if (green > 255) {
+                            green = 255;
+                        }
+                        if (green < 0) {
+                            green = 0;
+                        }
 
-	        int matrixSize = m.getMatrixSize();
-
-	        double[][] redPixel = new double[matrixSize][matrixSize],
-	                greenPixel = new double[matrixSize][matrixSize],
-	                bluePixel = new double[matrixSize][matrixSize];
-
-	        m.setValues(1);
-	        m.setMiddle(8);
-	        m.setFactor(9);
-			
-			for (int i = 0; i < modifiedBitmap.getWidth() - 2; i++) { 
-				for (int j = 0; j < modifiedBitmap.getHeight() - 2; j++) { 
-					
-					for (int x = 0; x < matrixSize; x++) { 
-						for (int y = 0; y < matrixSize; y++) { 
-		                    redPixel[x][y] = Color.red(modifiedBitmap.getPixel(i + x, j + y));
-							greenPixel[x][y] = Color.green(modifiedBitmap.getPixel(i + x, j + y));
-							bluePixel[x][y] = Color.blue(modifiedBitmap.getPixel(i + x, j + y));
-							
-	                        red = 0;
-	                        green = 0;
-	                        blue = 0;
-
-	                        for (int k = 0; k < matrixSize; k++) {
-	                            for (int n = 0; n < matrixSize; n++) {
-	                                red += (int) (redPixel[k][n] * m.matrix[k][n]);
-	                                green += (int) (greenPixel[k][n] * m.matrix[k][n]);
-	                                blue += (int) (bluePixel[k][n] * m.matrix[k][n]);
-	                            }
-	                        }
-	                        
-	                        red = (int) ((red / m.factor) + 5);
-	                        if (red > 255) {
-	                            red = 255;
-	                        }
-	                        if (red < 0) {
-	                            red = 0;
-	                        }
-	                        
-	                        green = (int) ((green / m.factor) + 5);
-	                        if (green > 255) {
-	                            green = 255;
-	                        }
-	                        if (green < 0) {
-	                            green = 0;
-	                        }
-
-	                        blue = (int) ((blue / m.factor) + 5);
-	                        if (blue > 255) {
-	                            blue = 255;
-	                        }
-	                        if (blue < 0) {
-	                            blue = 0;
-	                        }
-	                        
-						}
+                        blue = (int) ((blue / m.factor) + 5);
+                        if (blue > 255) {
+                            blue = 255;
+                        }
+                        if (blue < 0) {
+                            blue = 0;
+                        }
+                        
 					}
-					modifiedBitmap.setPixel(i + 1, j + 1, Color.argb(Color.alpha(modifiedBitmap.getPixel(i, j)), red, green, blue));
 				}
+				modifiedBitmap.setPixel(i + 1, j + 1, Color.argb(Color.alpha(modifiedBitmap.getPixel(i, j)), red, green, blue));
 			}
-			
-			return modifiedBitmap.copy(Config.ARGB_8888, true);
 		}
 		
-		return null;
-	}
-
-	@Override
-	public void setBitmap(Bitmap bm) { 
-		this.bm = bm;
-	}
-	
-	@Override
-	public Bitmap getBitmap() { 
-		return bm;
+		return modifiedBitmap.copy(Config.ARGB_8888, true);
 	}
 }
 

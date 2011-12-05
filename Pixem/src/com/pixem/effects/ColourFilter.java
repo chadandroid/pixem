@@ -35,7 +35,6 @@ import android.graphics.Bitmap.Config;
  */
 public class ColourFilter implements Effect {
 
-	private Bitmap bm;
 	private int colour;
 	
 	public ColourFilter(int colourChoice) { 
@@ -52,30 +51,9 @@ public class ColourFilter implements Effect {
 	
 	@Override
 	public Bitmap applyEffect(Bitmap bm) {
-		
-		if (bm != null) { 
-			setBitmap(bm);
 			
-			Bitmap modifiedBitmap = bm.copy(Config.ARGB_8888, true);
+		Bitmap modifiedBitmap = bm.copy(Config.ARGB_8888, true);
 			
-			
-			
-			
-		}
-		
-		return null;
-	}
-
-	@Override
-	public void setBitmap(Bitmap bm) {
-		
-	}
-
-	@Override
-	public Bitmap getBitmap() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
-	
+		return modifiedBitmap;	
+	}	
 }

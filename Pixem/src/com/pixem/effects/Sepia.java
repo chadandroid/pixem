@@ -37,12 +37,6 @@ import android.graphics.Color;
 public class Sepia implements Effect {
 
 	
-	private Bitmap bm;
-	
-	public Sepia () { 
-	}
-	
-	
 	/* (non-Javadoc)
 	 * @see com.android.pixem.org.Effect#applyEffect()
 	 */
@@ -50,55 +44,38 @@ public class Sepia implements Effect {
 	public Bitmap applyEffect(Bitmap bm) {
 		
         int red = 0, green = 0, blue = 0, clr, avg, sepiaIntensity = 15, sepiaDepth = 20;
-        
-		if (bm != null) { 
 			
-			setBitmap(bm);
-			
-			for (int x = 0; x < bm.getWidth(); x++) { 
-				for (int y = 0; y < bm.getHeight(); y++) { 
-	
-					clr = bm.getPixel(x, y);
-					red = Color.red(clr);
-					green = Color.green(clr);
-					blue = Color.blue(clr);
-					
-					avg = (red + green + blue) / 3;
-					red = green = blue = avg;
-					
-					red = red + (sepiaDepth * 2);
-					green = green + sepiaDepth;
-					blue -= sepiaIntensity;
-					
-					if (red > 255)
-						red = 255;
-					
-					if (green > 255)
-						green = 255;
-					
-					if (blue < 0) 
-						blue = 0;
-					
-					if (blue > 255)
-						blue = 255;
-					
-					bm.setPixel(x, y, Color.argb(Color.alpha(clr), red, green, blue));
-				}
+		for (int x = 0; x < bm.getWidth(); x++) { 
+			for (int y = 0; y < bm.getHeight(); y++) { 
+
+				clr = bm.getPixel(x, y);
+				red = Color.red(clr);
+				green = Color.green(clr);
+				blue = Color.blue(clr);
+				
+				avg = (red + green + blue) / 3;
+				red = green = blue = avg;
+				
+				red = red + (sepiaDepth * 2);
+				green = green + sepiaDepth;
+				blue -= sepiaIntensity;
+				
+				if (red > 255)
+					red = 255;
+				
+				if (green > 255)
+					green = 255;
+				
+				if (blue < 0) 
+					blue = 0;
+				
+				if (blue > 255)
+					blue = 255;
+				
+				bm.setPixel(x, y, Color.argb(Color.alpha(clr), red, green, blue));
 			}
-			
-			return bm;
 		}
 		
-		return null;
-	}
-
-	@Override
-	public void setBitmap(Bitmap bm) { 
-		this.bm = bm;
-	}
-	
-	@Override
-	public Bitmap getBitmap() { 
 		return bm;
 	}
 }
