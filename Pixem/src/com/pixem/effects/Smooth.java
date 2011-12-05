@@ -109,7 +109,7 @@ public class Smooth implements Effect {
 			}
 		}
 		
-		return modifiedBitmap.copy(Config.ARGB_8888, true);
+		return modifiedBitmap;
 	}
 }
 
