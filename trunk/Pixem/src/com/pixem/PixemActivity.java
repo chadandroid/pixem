@@ -89,14 +89,10 @@ public class PixemActivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				contrast.setBitmap(img.getDrawingCache());
 				contrast.setContrast(75);
 				contrast.setLowBrightContrast(false);
 
-				if (contrast.applyEffect(img.getDrawingCache()) != null) {
-					img.setImageBitmap(contrast.applyEffect(img
-							.getDrawingCache()));
-				}
+				img.setImageBitmap(contrast.applyEffect(img.getDrawingCache()));
 			}
 		});
 
@@ -104,14 +100,10 @@ public class PixemActivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				contrast.setBitmap(img.getDrawingCache());
 				contrast.setContrast(15);
 				contrast.setLowBrightContrast(false);
 
-				if (contrast.applyEffect(img.getDrawingCache()) != null) {
-					img.setImageBitmap(contrast.applyEffect(img
-							.getDrawingCache()));
-				}
+				img.setImageBitmap(contrast.applyEffect(img.getDrawingCache()));
 			}
 		});
 

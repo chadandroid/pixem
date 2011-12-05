@@ -33,47 +33,24 @@ import android.graphics.Color;
 
 public class BlackAndWhite implements Effect {
 	
-	private Bitmap bm;
-
-	public BlackAndWhite() { 
-	}
-	
 	public Bitmap applyEffect(Bitmap bm) { 
 		
 		int clr, red = 0, blue = 0, green = 0;
-		
-		if (bm != null) { 
-			
-			setBitmap(bm);
-			
 			Bitmap modifiedBitmap = bm.copy(Config.ARGB_8888, true);
 			
-			for (int i = 0; i < bm.getWidth(); i++) { 
-				for (int j = 0; j < bm.getHeight(); j++) { 
-					clr = modifiedBitmap.getPixel(i, j);
-					
-	                red = Color.red(clr);
-	            	green = Color.green(clr);
-	            	blue = Color.blue(clr);
-	            	
-	            	modifiedBitmap.setPixel(i, j, Color.argb(Color.alpha(clr), ((red + green + blue)/3), ((red + green + blue)/3), ((red + green + blue)/3)));
-				}
+		for (int i = 0; i < bm.getWidth(); i++) { 
+			for (int j = 0; j < bm.getHeight(); j++) { 
+				clr = modifiedBitmap.getPixel(i, j);
+				
+                red = Color.red(clr);
+            	green = Color.green(clr);
+            	blue = Color.blue(clr);
+            	
+            	modifiedBitmap.setPixel(i, j, Color.argb(Color.alpha(clr), ((red + green + blue)/3), ((red + green + blue)/3), ((red + green + blue)/3)));
 			}
-			
-			return modifiedBitmap;
 		}
-
-		return null;
-	}
-
-	@Override
-	public void setBitmap(Bitmap bm) { 
-		this.bm = bm;
-	}
-	
-	@Override
-	public Bitmap getBitmap() { 
-		return bm;
+		
+		return modifiedBitmap;
 	}
 }
 
