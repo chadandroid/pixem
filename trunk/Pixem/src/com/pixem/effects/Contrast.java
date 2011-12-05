@@ -36,10 +36,15 @@ import android.graphics.Color;
  *
  */
 public class Contrast implements Effect {
-
+	private final static int DEFAULT_CONTRAST_FACTOR = 15;
 	
 	private int contrastFactor;
-	private boolean isLowLevel = false;
+	private boolean isLowLevel;
+	
+	public Contrast() {
+		contrastFactor = DEFAULT_CONTRAST_FACTOR;
+		isLowLevel = false;
+	}
 	
 	public void setContrast(int contrastFactor) { 
 		this.contrastFactor = contrastFactor;

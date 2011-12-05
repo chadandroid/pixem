@@ -36,20 +36,13 @@ import android.graphics.Bitmap.Config;
 public class StraightBorder implements Border {   
 
 	private int color;
-	private int frameSize;
-	private Bitmap bm;
 	
 	public StraightBorder() { 
-		this (0, 0);
+		this(0);
 	}
 	
-	public StraightBorder (int color, int frameSize) { 
+	public StraightBorder (int color) { 
 		this.color = color;
-		this.frameSize = frameSize;
-	}
-	
-	public void setFrameSize(int frameSize) { 
-		this.frameSize = frameSize;
 	}
 	
 	public void setColor(int color) { 
@@ -59,71 +52,24 @@ public class StraightBorder implements Border {
 	public int getColor() { 
 		return color;
 	}
-	
-	public int getFrameSize() { 
-		return frameSize;
-	}
-
 
 	@Override
 	public Bitmap generateBorder(int width, int height) {
+			
+		Bitmap output = Bitmap.createBitmap(width, height, Config.ARGB_8888);
 		
-		if (bm != null && color != 0 && frameSize != 0) { 
-			
-			setBitmap(bm);
-			
-			Bitmap modifiedBitmap = bm.copy(Config.ARGB_8888, true);
-			
-			for (int i = 0; i < modifiedBitmap.getWidth(); i++) { 
-				for (int j = 0; j < modifiedBitmap.getHeight(); j++) { 
-	                if (i < width / 2 || j < height / 2 || i > bm.getWidth() - width / 2
-	                        || j > bm.getHeight() - height / 2) {
-	                	modifiedBitmap.setPixel(i, j, color);
-	                } else {
-	                	modifiedBitmap.setPixel(i, j, bm.getPixel(i, j));
-	                }
-				}
+		for (int i = 0; i < output.getWidth(); i++) { 
+			for (int j = 0; j < output.getHeight(); j++) { 
+                if (i < width / 2 || j < height / 2 || i > width - width / 2
+                        || j > height - height / 2) {
+                	output.setPixel(i, j, color);
+                } else {
+                	// hopefully 0 is transparent
+                	output.setPixel(i, j, 0);
+                }
 			}
-			
-			return modifiedBitmap;
 		}
 		
-		return null;
-	}
-	
-	@Override
-	public void setBitmap(Bitmap bm) { 
-		this.bm = bm;
-	}
-	
-	@Override
-	public Bitmap getBitmap() { 
-		return bm;
-	}
-
-
-	@Override
-	public Bitmap generateBorder(Bitmap bm) {
-		if (bm != null && color != 0 && frameSize != 0) { 
-			
-			setBitmap(bm);
-			
-			Bitmap modifiedBitmap = bm.copy(Config.ARGB_8888, true);
-			
-			for (int i = 0; i < modifiedBitmap.getWidth(); i++) { 
-				for (int j = 0; j < modifiedBitmap.getHeight(); j++) { 
-	                if (i < frameSize / 2 || j < frameSize / 2 || i > bm.getWidth() - frameSize / 2
-	                        || j > bm.getHeight() - frameSize / 2) {
-	                	modifiedBitmap.setPixel(i, j, color);
-	                } else {
-	                	modifiedBitmap.setPixel(i, j, bm.getPixel(i, j));
-	                }
-				}
-			}
-			
-			return modifiedBitmap;
-		}
-		
-		return null;
+		return output;
 	}
 }

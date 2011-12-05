@@ -20,10 +20,5 @@ import android.graphics.Bitmap;
  */
 public interface Border {
 
-	
-	public Bitmap generateBorder(Bitmap bm);
 	public Bitmap generateBorder (int width, int height);
-	
-	public void setBitmap(Bitmap bm);
-	public Bitmap getBitmap();
 }

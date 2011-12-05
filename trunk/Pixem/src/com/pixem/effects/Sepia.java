@@ -35,7 +35,9 @@ import android.graphics.Color;
  *
  */
 public class Sepia implements Effect {
-
+	
+	private final static int SEPIA_INTENSITY = 15;
+	private final static int SEPIA_DEPTH = 20;
 	
 	/* (non-Javadoc)
 	 * @see com.android.pixem.org.Effect#applyEffect()
@@ -43,7 +45,7 @@ public class Sepia implements Effect {
 	@Override
 	public Bitmap applyEffect(Bitmap bm) {
 		
-        int red = 0, green = 0, blue = 0, clr, avg, sepiaIntensity = 15, sepiaDepth = 20;
+        int red = 0, green = 0, blue = 0, clr, avg;
 			
 		for (int x = 0; x < bm.getWidth(); x++) { 
 			for (int y = 0; y < bm.getHeight(); y++) { 
@@ -56,9 +58,9 @@ public class Sepia implements Effect {
 				avg = (red + green + blue) / 3;
 				red = green = blue = avg;
 				
-				red = red + (sepiaDepth * 2);
-				green = green + sepiaDepth;
-				blue -= sepiaIntensity;
+				red = red + (SEPIA_DEPTH * 2);
+				green = green + SEPIA_DEPTH;
+				blue -= SEPIA_INTENSITY;
 				
 				if (red > 255)
 					red = 255;

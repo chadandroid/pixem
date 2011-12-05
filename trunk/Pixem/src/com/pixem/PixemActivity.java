@@ -14,9 +14,7 @@ import com.pixem.borders.Border;
 import com.pixem.borders.RoundedBorder;
 import com.pixem.borders.StraightBorder;
 import com.pixem.effects.BlackAndWhite;
-import com.pixem.effects.ColourFilter;
 import com.pixem.effects.Contrast;
-import com.pixem.effects.Effect;
 import com.pixem.effects.Sepia;
 import com.pixem.effects.Smooth;
 import com.pixem.utility.Utility;
@@ -55,19 +53,12 @@ public class PixemActivity extends Activity {
 	}
 
 	public void setButtonListeners() {
-		final Contrast contrast = new Contrast();
-
 		btnGreyScale.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
 
-				BlackAndWhite greyScale = new BlackAndWhite();
-
-				if (greyScale.applyEffect(img.getDrawingCache()) != null) {
-					img.setImageBitmap(greyScale.applyEffect(img
-							.getDrawingCache()));
-				}
+				img.setImageBitmap(new BlackAndWhite().applyEffect(img.getDrawingCache()));
 
 			}
 		});
@@ -77,11 +68,7 @@ public class PixemActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 
-				Sepia sepia = new Sepia();
-
-				if (sepia.applyEffect(img.getDrawingCache()) != null) {
-					img.setImageBitmap(sepia.applyEffect(img.getDrawingCache()));
-				}
+				img.setImageBitmap(new Sepia().applyEffect(img.getDrawingCache()));
 			}
 		});
 
@@ -89,8 +76,8 @@ public class PixemActivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
+				Contrast contrast = new Contrast();
 				contrast.setContrast(75);
-				contrast.setLowBrightContrast(false);
 
 				img.setImageBitmap(contrast.applyEffect(img.getDrawingCache()));
 			}
@@ -100,10 +87,7 @@ public class PixemActivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				contrast.setContrast(15);
-				contrast.setLowBrightContrast(false);
-
-				img.setImageBitmap(contrast.applyEffect(img.getDrawingCache()));
+				img.setImageBitmap(new Contrast().applyEffect(img.getDrawingCache()));
 			}
 		});
 
@@ -111,11 +95,7 @@ public class PixemActivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				Smooth smooth = new Smooth();
-
-				if (smooth.applyEffect(img.getDrawingCache()) != null) {
-					img.setImageBitmap(smooth.applyEffect(img.getDrawingCache()));
-				}
+				img.setImageBitmap(new Smooth().applyEffect(img.getDrawingCache()));
 			}
 		});
 
@@ -123,12 +103,10 @@ public class PixemActivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				StraightBorder border = new StraightBorder(Color.RED, 25);
-				border.setBitmap(img.getDrawingCache());
-				if (border.generateBorder(img.getDrawingCache()) != null) {
-					img.setImageBitmap(border.generateBorder(img
-							.getDrawingCache()));
-				}
+				StraightBorder border = new StraightBorder(Color.RED);
+				
+				img.setImageBitmap(border.generateBorder(img.getDrawingCache().getWidth(),
+						img.getDrawingCache().getHeight()));
 			}
 		});
 
@@ -137,11 +115,8 @@ public class PixemActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				Border roundedBorder = new RoundedBorder(Color.RED, 25, 25);
-				roundedBorder.setBitmap(img.getDrawingCache());
 
-				if (roundedBorder.generateBorder(25, 25) != null) {
-					img.setImageBitmap(roundedBorder.generateBorder(25, 25));
-				}
+				img.setImageBitmap(roundedBorder.generateBorder(25, 25));
 			}
 		});
 		
@@ -149,11 +124,9 @@ public class PixemActivity extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				Effect ColourFilter = new ColourFilter(Color.RED);
+				//Effect ColourFilter = new ColourFilter(Color.RED);
 				
-				if (Utility.switchBlueGreen(img.getDrawingCache()) != null) { 
-					img.setImageBitmap(Utility.switchBlueGreen(img.getDrawingCache()));
-				}
+				img.setImageBitmap(Utility.switchBlueGreen(img.getDrawingCache()));
 			}
 		});
 		
