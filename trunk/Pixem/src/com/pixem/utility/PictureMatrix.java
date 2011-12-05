@@ -21,7 +21,7 @@ such
  * Description:
  *
  *
- * Developer:   10107896
+ * Developer:   Saman Alvi
  * Date:        2011-08-21
  * Version:
  *
@@ -30,7 +30,7 @@ such
 package com.pixem.utility;
 
 /**
-* @author 10107896
+* @author Saman Alvi
 *
 */
 public class PictureMatrix {

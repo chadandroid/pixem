@@ -18,7 +18,7 @@
  * Description:
  *
  *
- * Developer:   10107896
+ * Developer:   Saman Alvi
  * Date:        2011-10-24
  * Version:
  *
@@ -29,7 +29,7 @@ package com.pixem.effects;
 import android.graphics.Bitmap;
 
 /**
- * @author 10107896
+ * @author Saman Alvi
  *
  */
 public interface Effect {

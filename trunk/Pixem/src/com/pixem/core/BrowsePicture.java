@@ -18,7 +18,7 @@
  * Description:
  *
  *
- * Developer:   10107896
+ * Developer:   Saman Alvi
  * Date:        2011-11-08
  * Version:
  *
@@ -36,7 +36,7 @@ import android.provider.MediaStore;
 import com.photoedit.pixem.R;
 
 /**
- * @author 10107896
+ * @author Saman Alvi
  *
  */
 public class BrowsePicture extends Activity {

@@ -18,7 +18,7 @@
  * Description:
  *
  *
- * Developer:   10107896
+ * Developer:   Saman Alvi
  * Date:        2011-11-11
  * Version:
  *
@@ -30,7 +30,7 @@ import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
 
 /**
- * @author 10107896
+ * @author Saman Alvi
  *
  */
 public class Duplicate implements Effect {
