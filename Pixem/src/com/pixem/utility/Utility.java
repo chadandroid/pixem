@@ -18,7 +18,7 @@
  * Description:
  *
  *
- * Developer:   10107896
+ * Developer:   Saman Alvi
  * Date:        2011-11-10
  * Version:
  *
@@ -37,7 +37,7 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 
 /**
- * @author 10107896
+ * @author Saman Alvi
  *
  */
 public class Utility {
