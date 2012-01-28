@@ -17,7 +17,7 @@ import com.pixem.effects.BlackAndWhite;
 import com.pixem.effects.Contrast;
 import com.pixem.effects.Sepia;
 import com.pixem.effects.Smooth;
-import com.pixem.utility.Utility;
+import com.pixem.utility.ColourUtil;
 
 public class PixemActivity extends Activity {
 	private Button btnGreyScale, btnSepia, btnContrastBrighter,
@@ -126,7 +126,7 @@ public class PixemActivity extends Activity {
 			public void onClick(View v) {
 				//Effect ColourFilter = new ColourFilter(Color.RED);
 				
-				img.setImageBitmap(Utility.switchBlueGreen(img.getDrawingCache()));
+				img.setImageBitmap(ColourUtil.switchBlueGreen(img.getDrawingCache()));
 			}
 		});
 		

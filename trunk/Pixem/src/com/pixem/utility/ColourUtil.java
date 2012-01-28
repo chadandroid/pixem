@@ -34,7 +34,7 @@ import android.graphics.Color;
  * @author Saman Alvi
  *
  */
-public class Utility {
+public class ColourUtil {
 	
 	public static int average (int colour1, int colour2, double percent) { 
 		
