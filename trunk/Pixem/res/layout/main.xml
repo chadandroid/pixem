@@ -89,40 +89,5 @@
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
 		android:id="@+id/effectsBar">
-		<ImageView
-			android:layout_width="wrap_content"
-			android:id="@+id/imageView1"
-			android:src="@drawable/a"
-			android:layout_height="wrap_content"></ImageView>
-		<ImageView
-			android:layout_width="wrap_content"
-			android:id="@+id/imageView2"
-			android:src="@drawable/b"
-			android:layout_height="wrap_content"></ImageView>
-		<ImageView
-			android:layout_width="wrap_content"
-			android:id="@+id/imageView3"
-			android:src="@drawable/c"
-			android:layout_height="wrap_content"></ImageView>
-		<ImageView
-			android:layout_width="wrap_content"
-			android:id="@+id/imageView4"
-			android:src="@drawable/d"
-			android:layout_height="wrap_content"></ImageView>
-		<ImageView
-			android:layout_width="wrap_content"
-			android:id="@+id/imageView5"
-			android:src="@drawable/e"
-			android:layout_height="wrap_content"></ImageView>
-		<ImageView
-			android:layout_width="wrap_content"
-			android:id="@+id/imageView6"
-			android:src="@drawable/f"
-			android:layout_height="wrap_content"></ImageView>
-		<ImageView
-			android:layout_width="wrap_content"
-			android:id="@+id/imageView7"
-			android:src="@drawable/g"
-			android:layout_height="wrap_content"></ImageView>
 	</LinearLayout>
 </LinearLayout>
