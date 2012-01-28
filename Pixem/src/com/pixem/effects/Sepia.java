@@ -28,6 +28,7 @@ package com.pixem.effects;
 
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.Bitmap.Config;
 
 
 /**
@@ -46,9 +47,10 @@ public class Sepia implements Effect {
 	public Bitmap applyEffect(Bitmap bm) {
 		
         int red = 0, green = 0, blue = 0, clr, avg;
-			
-		for (int x = 0; x < bm.getWidth(); x++) { 
-			for (int y = 0; y < bm.getHeight(); y++) { 
+		Bitmap modifiedBitmap = bm.copy(Config.ARGB_8888, true);
+
+		for (int x = 0; x < modifiedBitmap.getWidth(); x++) { 
+			for (int y = 0; y < modifiedBitmap.getHeight(); y++) { 
 
 				clr = bm.getPixel(x, y);
 				red = Color.red(clr);
@@ -74,11 +76,11 @@ public class Sepia implements Effect {
 				if (blue > 255)
 					blue = 255;
 				
-				bm.setPixel(x, y, Color.argb(Color.alpha(clr), red, green, blue));
+				modifiedBitmap.setPixel(x, y, Color.argb(Color.alpha(clr), red, green, blue));
 			}
 		}
 		
-		return bm;
+		return modifiedBitmap;
 	}
 }
 
