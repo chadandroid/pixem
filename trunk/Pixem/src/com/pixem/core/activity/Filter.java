@@ -42,7 +42,9 @@ import android.widget.LinearLayout;
 
 import com.photoedit.pixem.R;
 import com.pixem.core.EffectFactory;
+import com.pixem.core.BorderFactory;
 import com.pixem.core.PictureSession;
+import com.pixem.utility.BorderListener;
 import com.pixem.utility.EffectListener;
 
 /**
@@ -53,6 +55,7 @@ public class Filter extends Activity {
 
 	private LinearLayout layoutEffects = null;
 	private EffectFactory effectFactory;
+	private BorderFactory borderFactory;
 	private PictureSession session;
 	private ImageView img;
 	
@@ -72,6 +75,7 @@ public class Filter extends Activity {
 		
 		layoutEffects = (LinearLayout) findViewById(R.id.layoutEffects);
 		effectFactory = new EffectFactory();
+		borderFactory = new BorderFactory();
 		img = (ImageView) findViewById(R.id.imgMainImage);
 		
 	}
@@ -152,7 +156,7 @@ public class Filter extends Activity {
 		});
 		
 		layoutEffects.addView(btnBack);
-		layoutEffects.addView(getBorderEffects ());
+		layoutEffects.addView(getBorderEffects());
 	}
 	
 	private HorizontalScrollView getFilterEffects() { 
@@ -184,10 +188,13 @@ public class Filter extends Activity {
 		LinearLayout layout = new LinearLayout(this);
 		layout.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
 	
+		int counter = 0;
+		
 		for (Drawable d : getBorderImages()) { 
 			ImageView img = new ImageView(this);
 			img.setPadding(5, 0, 5, 0);
 			img.setImageDrawable(d);
+			img.setOnClickListener(new BorderListener(borderFactory.getBorder(counter++), session));
 			
 			layout.addView(img);
 		}
@@ -211,7 +218,7 @@ public class Filter extends Activity {
 		
 		ArrayList<Drawable> images  = new ArrayList<Drawable>();
 
-		for (Integer i : effectFactory.getEffectIcons()) { 
+		for (Integer i : borderFactory.getBorderIcons()) { 
 			images.add(getApplicationContext().getResources().getDrawable(i));
 		}
 		
