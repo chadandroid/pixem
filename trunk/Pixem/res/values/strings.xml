@@ -2,4 +2,8 @@
 <resources>
     <string name="hello">Hello World, PixemActivity!</string>
     <string name="app_name">Pixem</string>
+    <string name="back">Back</string>
+    <string name="save">Save</string>
+    <string name="filters">Filters</string>
+    <string name="borders">Borders</string>
 </resources>
