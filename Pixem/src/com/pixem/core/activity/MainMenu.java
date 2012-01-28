@@ -12,7 +12,7 @@ import android.widget.Button;
 
 import com.photoedit.pixem.R;
 
-public class MainMenuActivity extends Activity {
+public class MainMenu extends Activity {
 	private Button loadButton, galleryButton;
 	private Button takePictureButton;
 	private Button shareButton;
@@ -63,7 +63,7 @@ public class MainMenuActivity extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				Intent intent = new Intent().setClass(MainMenuActivity.this, Gallery.class);
+				Intent intent = new Intent().setClass(MainMenu.this, Gallery.class);
 				startActivity(intent);
 			}
 		});
