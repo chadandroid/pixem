@@ -13,7 +13,7 @@ import android.widget.Button;
 import com.photoedit.pixem.R;
 
 public class MainMenuActivity extends Activity {
-	private Button loadButton;
+	private Button loadButton, galleryButton;
 	private Button takePictureButton;
 	private Button shareButton;
 
@@ -26,6 +26,7 @@ public class MainMenuActivity extends Activity {
 		loadButton = (Button) findViewById(R.id.loadImageButton);
 		takePictureButton = (Button) findViewById(R.id.takePictureButton);
 		shareButton = (Button) findViewById(R.id.shareButton);
+		galleryButton = (Button) findViewById(R.id.btnGallery);
 	}
 
 	@Override
@@ -55,6 +56,15 @@ public class MainMenuActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				createDialog("Not Implemented.");
+			}
+		});
+		
+		galleryButton.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent().setClass(MainMenuActivity.this, Gallery.class);
+				startActivity(intent);
 			}
 		});
 	}

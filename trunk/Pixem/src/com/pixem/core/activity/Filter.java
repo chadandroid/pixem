@@ -41,8 +41,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.photoedit.pixem.R;
+import com.pixem.core.EffectFactory;
 import com.pixem.core.PictureSession;
-import com.pixem.effects.EffectFactory;
 import com.pixem.utility.EffectListener;
 
 /**
