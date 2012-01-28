@@ -11,15 +11,7 @@ public class EffectFactory {
 	
 	public EffectFactory() {
 		effects = new ArrayList<Effect>();
-		effects.add(new BlackAndWhite());
-		effects.add(new Contrast());
-		effects.add(new Sepia());
-		effects.add(new BlackAndWhite());
-		effects.add(new Contrast());
-		effects.add(new Sepia());
-		effects.add(new BlackAndWhite());
-		effects.add(new Contrast());
-		effects.add(new Sepia());
+		effects.add(new NullEffect());
 		effects.add(new BlackAndWhite());
 		effects.add(new Contrast());
 		effects.add(new Sepia());
@@ -36,15 +28,7 @@ public class EffectFactory {
 		icons.add(R.drawable.a);
 		icons.add(R.drawable.b);
 		icons.add(R.drawable.c);
-		icons.add(R.drawable.a);
-		icons.add(R.drawable.b);
-		icons.add(R.drawable.c);
-		icons.add(R.drawable.a);
-		icons.add(R.drawable.b);
-		icons.add(R.drawable.c);
-		icons.add(R.drawable.a);
-		icons.add(R.drawable.b);
-		icons.add(R.drawable.c);
+		icons.add(R.drawable.d);
 		
 		return icons;
 	}
