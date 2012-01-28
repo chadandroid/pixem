@@ -5,6 +5,7 @@ import android.graphics.Bitmap.Config;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.widget.ImageView;
 
 import com.pixem.borders.Border;
 import com.pixem.effects.Effect;
@@ -19,13 +20,17 @@ public class PictureSession {
 	private Bitmap current;
 	private Border border;
 	
-	public PictureSession (Bitmap bm) { 
+	private ImageView img;
+	
+	public PictureSession (Bitmap bm, ImageView img) { 
 		original = bm.copy(Config.ARGB_8888, true);
 		current = bm.copy(Config.ARGB_8888, true);
+		
+		this.img = img;
 	}
 	
 	public void applyEffect(Effect effect) {
-		current = effect.applyEffect(current);
+		current = effect.applyEffect(original);
 	}
 
 	public void addBorder(Border border) {
@@ -40,7 +45,7 @@ public class PictureSession {
 		current = original.copy(Config.ARGB_8888, true);
 	}
 
-	public Bitmap getCombined() {
+	public void draw() {
 		// Copy effected image
 		Bitmap output = current.copy(Config.ARGB_8888, true);
 
@@ -52,7 +57,7 @@ public class PictureSession {
 			canvas.drawBitmap(border.generateBorder(current.getWidth(), current.getHeight()), rect, rect, new Paint());
 		}
 		
-		return output;
+		img.setImageBitmap(output);
 	}
 	
 	

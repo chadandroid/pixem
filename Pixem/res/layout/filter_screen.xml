@@ -37,14 +37,12 @@
                     android:text="@string/save" />
             </RelativeLayout>
         </LinearLayout>
-
         <ImageView
-            android:id="@+id/mainImage"
+            android:id="@+id/imgMainImage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/linearLayout1"
-            android:layout_centerInParent="true"
-            android:src="@drawable/img_girl" />
+            android:layout_centerInParent="true"/>
         <LinearLayout
             android:background="@color/black"
             android:layout_alignParentBottom="true"
@@ -65,13 +63,5 @@
                 android:layout_height="wrap_content"
                 android:text="@string/borders" />
         </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/linearLayout2"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:orientation="horizontal" >
-            </LinearLayout>
-
     </RelativeLayout>
 </LinearLayout>

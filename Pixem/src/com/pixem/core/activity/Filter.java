@@ -29,6 +29,7 @@ package com.pixem.core.activity;
 import java.util.ArrayList;
 
 import android.app.Activity;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
@@ -40,6 +41,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.photoedit.pixem.R;
+import com.pixem.core.PictureSession;
+import com.pixem.effects.EffectFactory;
+import com.pixem.utility.EffectListener;
 
 /**
  * @author 10107896
@@ -48,6 +52,9 @@ import com.photoedit.pixem.R;
 public class Filter extends Activity {
 
 	private LinearLayout layoutEffects = null;
+	private EffectFactory effectFactory;
+	private PictureSession session;
+	private ImageView img;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) { 
@@ -64,12 +71,17 @@ public class Filter extends Activity {
 		});
 		
 		layoutEffects = (LinearLayout) findViewById(R.id.layoutEffects);
-
+		effectFactory = new EffectFactory();
+		img = (ImageView) findViewById(R.id.imgMainImage);
+		
 	}
 	
 	@Override
 	public void onResume() { 
 		super.onResume();
+		
+		session = new PictureSession(BitmapFactory.decodeResource(this.getResources(), R.drawable.img_girl), img);
+		session.draw();
 		
 		addFilterBorderButton();
 
@@ -150,10 +162,13 @@ public class Filter extends Activity {
 		LinearLayout layout = new LinearLayout(this);
 		layout.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
 		
+		int counter = 0;
+		
 		for (Drawable d : getFilterImages()) { 
 			ImageView img = new ImageView(this);
 			img.setPadding(5, 0, 5, 0);
 			img.setImageDrawable(d);
+			img.setOnClickListener(new EffectListener(effectFactory.getEffect(counter++), session));
 			
 			layout.addView(img);
 		}
@@ -182,38 +197,31 @@ public class Filter extends Activity {
 	}	
 	
 	private ArrayList<Drawable> getFilterImages() { 
-		ArrayList<Drawable> images  = new ArrayList<Drawable>();
 		
-		images.add(getApplicationContext().getResources().getDrawable(R.drawable.a));
-		images.add(getApplicationContext().getResources().getDrawable(R.drawable.b));
-		images.add(getApplicationContext().getResources().getDrawable(R.drawable.c));
-		images.add(getApplicationContext().getResources().getDrawable(R.drawable.d));
-		images.add(getApplicationContext().getResources().getDrawable(R.drawable.e));
-		images.add(getApplicationContext().getResources().getDrawable(R.drawable.f));
-		images.add(getApplicationContext().getResources().getDrawable(R.drawable.g));
-		images.add(getApplicationContext().getResources().getDrawable(R.drawable.h));
-		images.add(getApplicationContext().getResources().getDrawable(R.drawable.i));
-		images.add(getApplicationContext().getResources().getDrawable(R.drawable.k));
-		images.add(getApplicationContext().getResources().getDrawable(R.drawable.l));
+		ArrayList<Drawable> images  = new ArrayList<Drawable>();
 
+		for (Integer i : effectFactory.getEffectIcons()) { 
+			images.add(getApplicationContext().getResources().getDrawable(i));
+		}
+		
 		return images;
 	}
 	
 	private ArrayList<Drawable> getBorderImages() { 
-		ArrayList<Drawable> images  = new ArrayList<Drawable>();
 		
-		images.add(getApplicationContext().getResources().getDrawable(R.drawable.a));
-		images.add(getApplicationContext().getResources().getDrawable(R.drawable.b));
-		images.add(getApplicationContext().getResources().getDrawable(R.drawable.c));
-		images.add(getApplicationContext().getResources().getDrawable(R.drawable.d));
-		images.add(getApplicationContext().getResources().getDrawable(R.drawable.e));
-		images.add(getApplicationContext().getResources().getDrawable(R.drawable.f));
-		images.add(getApplicationContext().getResources().getDrawable(R.drawable.g));
-		images.add(getApplicationContext().getResources().getDrawable(R.drawable.h));
-		images.add(getApplicationContext().getResources().getDrawable(R.drawable.i));
-		images.add(getApplicationContext().getResources().getDrawable(R.drawable.k));
-		images.add(getApplicationContext().getResources().getDrawable(R.drawable.l));
+		ArrayList<Drawable> images  = new ArrayList<Drawable>();
 
+		for (Integer i : effectFactory.getEffectIcons()) { 
+			images.add(getApplicationContext().getResources().getDrawable(i));
+		}
+		
 		return images;
+	}
+	
+	@Override
+	public void onPause() { 
+		super.onPause();
+		
+		session = null;
 	}
 }

@@ -12,16 +12,16 @@ public class EffectFactory {
 	public EffectFactory() {
 		effects = new ArrayList<Effect>();
 		effects.add(new BlackAndWhite());
-		effects.add(new Smooth());
+		effects.add(new Contrast());
 		effects.add(new Sepia());
 		effects.add(new BlackAndWhite());
-		effects.add(new Smooth());
+		effects.add(new Contrast());
 		effects.add(new Sepia());
 		effects.add(new BlackAndWhite());
-		effects.add(new Smooth());
+		effects.add(new Contrast());
 		effects.add(new Sepia());
 		effects.add(new BlackAndWhite());
-		effects.add(new Smooth());
+		effects.add(new Contrast());
 		effects.add(new Sepia());
 		
 	}
