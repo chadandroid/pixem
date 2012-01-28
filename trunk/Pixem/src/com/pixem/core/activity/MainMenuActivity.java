@@ -3,6 +3,7 @@ package com.pixem.core.activity;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -38,7 +39,8 @@ public class MainMenuActivity extends Activity {
 		loadButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				createDialog("Not Implemented.");
+				Intent myIntent = new Intent(v.getContext(), Filter.class);
+                startActivityForResult(myIntent, 0);
 			}
 		});
 		
