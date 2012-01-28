@@ -145,6 +145,8 @@ public class Filter extends Activity {
 	
 	private HorizontalScrollView getFilterEffects() { 
 		HorizontalScrollView scrollView = new HorizontalScrollView(this);
+		scrollView.setHorizontalScrollBarEnabled(false);
+
 		LinearLayout layout = new LinearLayout(this);
 		layout.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
 		
@@ -162,6 +164,8 @@ public class Filter extends Activity {
 	
 	private HorizontalScrollView getBorderEffects() { 
 		HorizontalScrollView scrollView = new HorizontalScrollView(this);
+		scrollView.setHorizontalScrollBarEnabled(false);
+		
 		LinearLayout layout = new LinearLayout(this);
 		layout.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
 	
