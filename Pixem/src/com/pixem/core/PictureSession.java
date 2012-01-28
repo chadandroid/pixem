@@ -36,7 +36,7 @@ public class PictureSession {
 		border = null;
 	}
 
-	public void revert() {
+	public void removeEffect() {
 		current = original.copy(Config.ARGB_8888, true);
 	}
 
