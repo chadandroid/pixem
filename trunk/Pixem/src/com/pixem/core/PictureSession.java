@@ -13,13 +13,13 @@ import com.pixem.effects.Effect;
  * @author Saman Alvi
  *
  */
-public class Picture {
+public class PictureSession {
 	
 	private Bitmap original;
 	private Bitmap current;
-	private Bitmap border;
+	private Border border;
 	
-	public Picture (Bitmap bm) { 
+	public PictureSession (Bitmap bm) { 
 		original = bm.copy(Config.ARGB_8888, true);
 		current = bm.copy(Config.ARGB_8888, true);
 	}
@@ -29,7 +29,7 @@ public class Picture {
 	}
 
 	public void addBorder(Border border) {
-		this.border = border.generateBorder(original.getWidth(), original.getHeight());
+		this.border = border;
 	}
 
 	public void removeBorder() {
@@ -48,7 +48,9 @@ public class Picture {
 		Rect rect = new Rect(0, 0, output.getWidth(), output.getHeight());
 		
 		// Draw border on it, I think this is how its done...
-		canvas.drawBitmap(border, rect, rect, new Paint());
+		if(border != null) {
+			canvas.drawBitmap(border.generateBorder(current.getWidth(), current.getHeight()), rect, rect, new Paint());
+		}
 		
 		return output;
 	}
