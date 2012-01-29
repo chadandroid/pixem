@@ -26,8 +26,17 @@
  */
 package com.pixem.core.activity;
 
+import java.io.FileNotFoundException;
+
 import android.app.Activity;
+import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.util.Log;
 
 /**
  * @author 10107896
@@ -35,16 +44,43 @@ import android.os.Bundle;
  */
 public class Gallery extends Activity {
 
-	
+    private static final int SELECT_PICTURE = 0;
+    private String selectedImagePath;
+    private String filemanagerstring;
+    
 	@Override
 	public void onCreate(Bundle savedInstanceState) { 
 		super.onCreate(savedInstanceState);
 		
+		Intent gallIntent = new Intent(Intent.ACTION_GET_CONTENT);
+		gallIntent.setType("image/*"); 
 		
+        startActivityForResult(Intent.createChooser(gallIntent,
+                "Select Picture"), SELECT_PICTURE);
 	}
 	
-	@Override
-	public void onResume() { 
-		super.onResume();
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) { 
+		super.onActivityResult(requestCode, resultCode, data);
+		
+		if (requestCode == SELECT_PICTURE && resultCode == RESULT_OK) { 
+			Uri selectedImage = data.getData();
+			String[] filePathColumn = {MediaStore.Images.Media.DATA};
+
+			Cursor cursor = getContentResolver().query(selectedImage, filePathColumn, null, null, null);
+			cursor.moveToFirst();
+
+			int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+			String filePath = cursor.getString(columnIndex);
+			cursor.close();
+			
+			Log.d("", "== file path is: " + filePath);
+			
+			Intent intent = new Intent().setClass(Gallery.this, Filter.class);
+			intent.putExtra("filepath", filePath);
+			intent.putExtra("uri", selectedImage);
+			startActivity(intent);
+			
+			finish();
+		}
 	}
 }
