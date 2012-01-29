@@ -15,6 +15,7 @@ package com.pixem.borders;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
@@ -28,8 +29,8 @@ import android.graphics.PorterDuff.Mode;
  */
 public class RoundedBorder implements Border {
 
-	private final static int DEFAULT_ARC_WIDTH = 25;
-	private final static int DEFAULT_ARC_HEIGHT = 25;
+	private final static int DEFAULT_ARC_WIDTH = 5;
+	private final static int DEFAULT_ARC_HEIGHT = 5;
 	
 	
 	private int arcWidth;
@@ -37,7 +38,7 @@ public class RoundedBorder implements Border {
 	private int borderColor;
 	
 	public RoundedBorder() { 
-		this(0, DEFAULT_ARC_WIDTH, DEFAULT_ARC_HEIGHT);
+		this(0xff990099, DEFAULT_ARC_WIDTH, DEFAULT_ARC_HEIGHT);
 	}
 	
 	public RoundedBorder(int colour) { 
@@ -80,15 +81,23 @@ public class RoundedBorder implements Border {
 		Canvas canvas = new Canvas(output);
 		Paint paint = new Paint();
 		Rect rect = new Rect(0, 0, width, height);
-		RectF rectF = new RectF(rect);
+		RectF rectF = new RectF(width/15, width/15, width - width/15, height -width/15);
 		
-		paint.setAntiAlias(true);
-		canvas.drawARGB(0, 0, 0, 0);
-		paint.setColor(borderColor);
-		canvas.drawRoundRect(rectF, arcWidth, arcHeight, paint);
+		
+		canvas.drawColor(borderColor);
+		
+		canvas.drawRoundRect(rectF, width / arcWidth, width / arcHeight, paint);
 		
 		paint.setXfermode(new PorterDuffXfermode(Mode.SRC_IN));
 		canvas.drawBitmap(output, rect, rect, paint);
+		
+		for(int x=0;x<width;x++) {
+		    for(int y=0;y<height;y++) {
+		        if(output.getPixel(x, y) == Color.BLACK) {
+		        	output.setPixel(x, y, Color.TRANSPARENT);
+		        }
+		    }
+		}
 		
 		return output;
 	}

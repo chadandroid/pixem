@@ -38,7 +38,7 @@ public class StraightBorder implements Border {
 	private int color;
 	
 	public StraightBorder() { 
-		this(0);
+		this(0xff990099);
 	}
 	
 	public StraightBorder (int color) { 
@@ -60,8 +60,8 @@ public class StraightBorder implements Border {
 		
 		for (int i = 0; i < output.getWidth(); i++) { 
 			for (int j = 0; j < output.getHeight(); j++) { 
-                if (i < width / 2 || j < height / 2 || i > width - width / 2
-                        || j > height - height / 2) {
+                if (i < width / 15 || j < width / 15 || i > width - width / 15
+                        || j > height - width / 15) {
                 	output.setPixel(i, j, color);
                 } else {
                 	// hopefully 0 is transparent

@@ -31,7 +31,6 @@ import android.view.View.OnClickListener;
 
 import com.pixem.borders.Border;
 import com.pixem.core.PictureSession;
-import com.pixem.effects.Effect;
 
 /**
  * @author 10107896
