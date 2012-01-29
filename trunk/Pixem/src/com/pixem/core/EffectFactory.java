@@ -3,7 +3,7 @@ package com.pixem.core;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.photoedit.pixem.R;
+import com.pixem.R;
 import com.pixem.effects.BlackAndWhite;
 import com.pixem.effects.Contrast;
 import com.pixem.effects.Effect;

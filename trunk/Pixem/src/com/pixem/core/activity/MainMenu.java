@@ -10,7 +10,7 @@ import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.Button;
 
-import com.photoedit.pixem.R;
+import com.pixem.R;
 
 public class MainMenu extends Activity {
 	private Button loadButton, galleryButton;
