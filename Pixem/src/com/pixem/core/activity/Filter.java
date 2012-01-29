@@ -27,9 +27,12 @@
 package com.pixem.core.activity;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.ArrayList;
 
 import android.app.Activity;
+import android.content.ContentValues;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -37,6 +40,8 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.provider.MediaStore.Images;
+import android.provider.MediaStore.Images.Media;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
@@ -47,8 +52,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.pixem.R;
-import com.pixem.core.EffectFactory;
 import com.pixem.core.BorderFactory;
+import com.pixem.core.EffectFactory;
 import com.pixem.core.PictureSession;
 import com.pixem.utility.BorderListener;
 import com.pixem.utility.EffectListener;
@@ -76,6 +81,14 @@ public class Filter extends Activity {
 			@Override
 			public void onClick(View v) {
 				finish();
+			}
+		});
+		
+		((Button) findViewById(R.id.btnSave)).setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				savePicture2();
 			}
 		});
 		
@@ -307,4 +320,86 @@ public class Filter extends Activity {
         o2.inSampleSize = scale;
         return BitmapFactory.decodeStream(getContentResolver().openInputStream(selectedImage), null, o2);
 	}
+
+	private void savePicture2() { 
+        ContentValues values = new ContentValues();
+        values.put(Images.Media.TITLE, "title");
+        values.put(Images.Media.BUCKET_ID, "test");
+        values.put(Images.Media.DESCRIPTION, "test Image taken");
+        values.put(Images.Media.MIME_TYPE, "image/jpeg");
+        Uri uri = getContentResolver().insert(Media.EXTERNAL_CONTENT_URI, values);
+        OutputStream outstream;
+        try {
+                outstream = getContentResolver().openOutputStream(uri);
+                img.getDrawingCache().compress(Bitmap.CompressFormat.JPEG, 70, outstream);
+                outstream.close();
+        } catch (FileNotFoundException e) {
+                //
+        } catch (IOException e){
+                //
+        }
+	}
+	
+	
+/*	private void savePicture(String fileName) { 
+
+		try {
+			String path = Environment.getExternalStorageDirectory().toString();
+			OutputStream fOut = null;
+			File file = new File(path, fileName + ".jpg");
+			fOut = new FileOutputStream(file);
+			
+			if (img.getDrawingCache().compress(Bitmap.CompressFormat.JPEG, 85, fOut)) { 
+				fOut.flush();
+				fOut.close();
+
+				MediaStore.Images.Media.insertImage(getContentResolver(),file.getAbsolutePath(),file.getName(),file.getName());
+				Log.d("", "== saved image");
+			} else { 
+				fOut.flush();
+				fOut.close();
+				Log.d("", "== couldn't compress bitmap");
+			}
+			
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+			Log.d("", "== file not found exception");
+		} catch (IOException ex) { 
+			ex.printStackTrace();
+			Log.d("", "== ioexception");
+		}
+	}
+	*/
+/*	private void savePicture (String imagePath, long dateTaken) {
+		
+		ContentValues v = new ContentValues();
+		//v.put(Images.Media.TITLE, title);
+		v.put(Images.Media.DISPLAY_NAME, "");
+		//v.put(Images.Media.DESCRIPTION, description);
+		v.put(Images.Media.DATE_ADDED, dateTaken);
+		v.put(Images.Media.DATE_TAKEN, dateTaken);
+		v.put(Images.Media.DATE_MODIFIED, dateTaken) ;
+		v.put(Images.Media.MIME_TYPE, "image/jpeg");
+		v.put(Images.Media.ORIENTATION, 0);
+		
+		File f = new File(imagePath) ;
+		File parent = f.getParentFile() ;
+		String path = parent.toString().toLowerCase() ;
+		String name = parent.getName().toLowerCase() ;
+		v.put(Images.ImageColumns.BUCKET_ID, path.hashCode());
+		v.put(Images.ImageColumns.BUCKET_DISPLAY_NAME, name);
+		v.put(Images.Media.SIZE,f.length()) ;
+		f = null ;
+		
+		if( targ_loc != null ) {
+		v.put(Images.Media.LATITUDE, loc.getLatitude());
+		v.put(Images.Media.LONGITUDE, loc.getLongitude());
+		}
+		
+		v.put("_data",imagePath) ;
+		ContentResolver c = getContentResolver() ;
+		c.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, v);
+		
+		//return c.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, v);
+	}*/
 }

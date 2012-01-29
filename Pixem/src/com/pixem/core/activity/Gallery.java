@@ -26,13 +26,9 @@
  */
 package com.pixem.core.activity;
 
-import java.io.FileNotFoundException;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -45,8 +41,6 @@ import android.util.Log;
 public class Gallery extends Activity {
 
     private static final int SELECT_PICTURE = 0;
-    private String selectedImagePath;
-    private String filemanagerstring;
     
 	@Override
 	public void onCreate(Bundle savedInstanceState) { 
