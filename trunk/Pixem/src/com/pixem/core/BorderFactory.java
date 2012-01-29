@@ -6,6 +6,7 @@ import java.util.List;
 import com.photoedit.pixem.R;
 import com.pixem.borders.Border;
 import com.pixem.borders.NullBorder;
+import com.pixem.borders.RoundedBorder;
 import com.pixem.borders.StraightBorder;
 
 public class BorderFactory {
@@ -16,6 +17,7 @@ public class BorderFactory {
 		borders = new ArrayList<Border>();
 		borders.add(new NullBorder());
 		borders.add(new StraightBorder());
+		borders.add(new RoundedBorder());
 	}
 	
 	public int getNumberOfEffects() {
@@ -25,6 +27,7 @@ public class BorderFactory {
 	public List<Integer> getBorderIcons() {
 		List<Integer> icons = new ArrayList<Integer>();
 		
+		icons.add(R.drawable.x);
 		icons.add(R.drawable.y);
 		icons.add(R.drawable.z);
 		
