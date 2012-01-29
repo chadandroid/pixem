@@ -1,11 +1,8 @@
 package com.pixem.core.activity;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -64,7 +61,8 @@ public class MainMenu extends Activity {
 		shareButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				createDialog("Not Implemented.");
+				Intent myIntent = new Intent(v.getContext(), Example.class);
+                startActivityForResult(myIntent, 0);
 			}
 		});
 		
@@ -76,21 +74,6 @@ public class MainMenu extends Activity {
 				startActivity(intent);
 			}
 		});
-	}
-	
-	private void createDialog(String message) {
-		final AlertDialog alertDialog;
-		alertDialog = new AlertDialog.Builder(this).create();
-		alertDialog.setTitle(message);
-		alertDialog.setButton("OK", new DialogInterface.OnClickListener() {
-	        public void onClick(DialogInterface dialog, int which) {
-	            //dismiss the dialog  
-	        	alertDialog.dismiss();
-	          }
-	      });
-		
-		alertDialog.setCancelable(true);
-		alertDialog.show();
 	}
 
 	@Override

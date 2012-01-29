@@ -7,6 +7,7 @@
 
     <uses-permission android:name="android.permission.READ_OWNER_DATA" />
     <uses-permission android:name="android.permission.WRITE_OWNER_DATA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-feature android:name="android.hardware.camera" />
     
@@ -20,5 +21,6 @@
         </activity>
         <activity android:name="com.pixem.core.activity.Filter" android:screenOrientation="portrait"></activity>
         <activity android:name="com.pixem.core.activity.Gallery"></activity>
+        <activity android:name="com.pixem.core.activity.Example"></activity>
     </application>
 </manifest>

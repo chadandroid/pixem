@@ -10,4 +10,10 @@
     <string name="filters">Filters</string>
     <string name="borders">Borders</string>
     <string name="gallery">Gallery</string>
+    
+    <!-- facebook -->
+    <string name="request">Request!</string>
+    <string name="upload">Upload Photo</string>
+    <string name="post">Wall Post!</string>
+    <string name="delete">Delete Post</string>
 </resources>
