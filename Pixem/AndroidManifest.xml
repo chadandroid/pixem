@@ -14,5 +14,6 @@
             </intent-filter>
         </activity>
         <activity android:name="com.pixem.core.activity.Filter" android:screenOrientation="portrait"></activity>
+        <activity android:name="com.pixem.core.activity.Gallery"></activity>
     </application>
 </manifest>

@@ -26,12 +26,18 @@
  */
 package com.pixem.core.activity;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 import android.app.Activity;
+import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 import android.view.Window;
@@ -84,9 +90,20 @@ public class Filter extends Activity {
 	public void onResume() { 
 		super.onResume();
 		
-		session = new PictureSession(BitmapFactory.decodeResource(this.getResources(), R.drawable.img_girl), img);
-		session.draw();
+		Bitmap bm = null;
+		if (getIntent().getExtras() != null) { 
+			if (getIntent().getExtras().containsKey("uri")) { 
+				bm = getBitmapImage();
+			}
+		}
 		
+		if (bm == null) { 
+			session = new PictureSession(BitmapFactory.decodeResource(this.getResources(), R.drawable.img_girl), img);
+		} else { 
+            session = new PictureSession(bm, img);
+		}
+		
+		session.draw();
 		addFilterBorderButton();
 
 	}
@@ -230,5 +247,64 @@ public class Filter extends Activity {
 		super.onPause();
 		
 		session = null;
+	}
+	
+	public Bitmap getBitmapImage() { 
+		
+		Bitmap selectedBitmap = null;
+		
+		try {
+			Uri selectedImage = getIntent().getExtras().getParcelable("uri");
+			String[] filePathColumn = {MediaStore.Images.Media.DATA};
+
+			Cursor cursor = getContentResolver().query(selectedImage, filePathColumn, null, null, null);
+			cursor.moveToFirst();
+
+			int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+			String filePath = cursor.getString(columnIndex);
+			cursor.close();
+			
+			selectedBitmap = decodeUri(selectedImage);
+			
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+			return null;
+		}
+		
+		return selectedBitmap;
+	}
+	/**
+	 * Taken from: http://stackoverflow.com/a/5086706/786414
+	 * @param selectedImage
+	 * @return
+	 * @throws FileNotFoundException
+	 */
+	private Bitmap decodeUri(Uri selectedImage) throws FileNotFoundException { 
+		
+	    // Decode image size
+        BitmapFactory.Options o = new BitmapFactory.Options();
+        o.inJustDecodeBounds = true;
+        BitmapFactory.decodeStream(getContentResolver().openInputStream(selectedImage), null, o);
+
+        // The new size we want to scale to
+        final int REQUIRED_SIZE = 250;
+
+        // Find the correct scale value. It should be the power of 2.
+        int width_tmp = o.outWidth, height_tmp = o.outHeight;
+        int scale = 1;
+        while (true) {
+            if (width_tmp / 2 < REQUIRED_SIZE
+               || height_tmp / 2 < REQUIRED_SIZE) {
+                break;
+            }
+            width_tmp /= 2;
+            height_tmp /= 2;
+            scale *= 2;
+        }
+
+        // Decode with inSampleSize
+        BitmapFactory.Options o2 = new BitmapFactory.Options();
+        o2.inSampleSize = scale;
+        return BitmapFactory.decodeStream(getContentResolver().openInputStream(selectedImage), null, o2);
 	}
 }

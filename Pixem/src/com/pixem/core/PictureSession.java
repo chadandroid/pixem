@@ -39,7 +39,6 @@ public class PictureSession {
 
 	public void draw() {
 		
-
 		if(border != null) {
 			// Copy effected image
 			Bitmap output = current.copy(Config.ARGB_8888, true);
