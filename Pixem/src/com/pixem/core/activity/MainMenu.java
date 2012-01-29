@@ -85,7 +85,6 @@ public class MainMenu extends Activity {
 		alertDialog.setButton("OK", new DialogInterface.OnClickListener() {
 	        public void onClick(DialogInterface dialog, int which) {
 	            //dismiss the dialog  
-	        	
 	        	alertDialog.dismiss();
 	          }
 	      });
@@ -113,7 +112,10 @@ public class MainMenu extends Activity {
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) { 
 		super.onActivityResult(requestCode, resultCode, data);
 		
-		if ((requestCode == CAMERA_PICTURE || requestCode == GALLERY_PICTURE) && resultCode == RESULT_OK) { 
+		if (requestCode == GALLERY_PICTURE && resultCode == RESULT_OK) { 
+			Intent intent = getImageData(data);
+			startActivity(intent);
+		} else if (requestCode == CAMERA_PICTURE && resultCode == RESULT_OK) { 
 			Intent intent = getImageData(data);
 			startActivity(intent);
 		}
@@ -124,6 +126,8 @@ public class MainMenu extends Activity {
 		Uri selectedImage = data.getData();
 		String[] filePathColumn = {MediaStore.Images.Media.DATA};
 
+		Log.d("", "== uri is " + selectedImage);
+		
 		Cursor cursor = getContentResolver().query(selectedImage, filePathColumn, null, null, null);
 		cursor.moveToFirst();
 
