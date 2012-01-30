@@ -37,7 +37,6 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
@@ -289,8 +288,8 @@ public class Filter extends Activity {
 					filePathColumn, null, null, null);
 			cursor.moveToFirst();
 
-			int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-			String filePath = cursor.getString(columnIndex);
+			//int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+			//String filePath = cursor.getString(columnIndex);
 			cursor.close();
 
 			selectedBitmap = decodeUri(selectedImage);
