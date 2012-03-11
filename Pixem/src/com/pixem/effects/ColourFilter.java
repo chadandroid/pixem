@@ -27,6 +27,7 @@
 package com.pixem.effects;
 
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.Bitmap.Config;
 
 /**
@@ -53,7 +54,30 @@ public class ColourFilter implements Effect {
 	public Bitmap applyEffect(Bitmap bm) {
 			
 		Bitmap modifiedBitmap = bm.copy(Config.ARGB_8888, true);
-			
+		
+		int red, green, blue, color;
+		
+		for (int x = 0; x < modifiedBitmap.getWidth(); x++) { 
+			for (int y = 0; y < modifiedBitmap.getHeight(); y++) { 
+
+				color = bm.getPixel(x, y);
+				red = Color.red(color) + Color.red(colour);
+				green = Color.green(color) + Color.green(colour);
+				blue = Color.blue(color) + Color.blue(colour);
+				
+				if (red > 255)
+					red = 255;
+				
+				if (green > 255)
+					green = 255;
+				
+				if (blue > 255)
+					blue = 255;
+				
+				modifiedBitmap.setPixel(x, y, Color.argb(Color.alpha(color), red, green, blue));
+			}
+		}
+		
 		return modifiedBitmap;	
 	}	
 }
