@@ -180,6 +180,9 @@ public class Filter extends Activity {
 		layoutEffects.addView(getFilterEffects());
 	}
 
+	/**
+	 * Adds the borders to be viewed
+	 */
 	private void showBorders() {
 		layoutEffects.removeAllViews();
 
@@ -199,6 +202,11 @@ public class Filter extends Activity {
 		layoutEffects.addView(getBorderEffects());
 	}
 
+	/**
+	 * Creates a Horizontal Scroll View with all the filter effect
+	 * images and returns the view.
+	 * @return
+	 */
 	private HorizontalScrollView getFilterEffects() {
 		HorizontalScrollView scrollView = new HorizontalScrollView(this);
 		scrollView.setHorizontalScrollBarEnabled(false);
@@ -223,6 +231,11 @@ public class Filter extends Activity {
 		return scrollView;
 	}
 
+	/**
+	 * Creates and returns a horizontal scroll view of border 
+	 * effects (view of images for effects).
+	 * @return
+	 */
 	private HorizontalScrollView getBorderEffects() {
 		HorizontalScrollView scrollView = new HorizontalScrollView(this);
 		scrollView.setHorizontalScrollBarEnabled(false);
@@ -247,6 +260,10 @@ public class Filter extends Activity {
 		return scrollView;
 	}
 
+	/**
+	 * Returns an ArrayList of all the images of effects
+	 * @return
+	 */
 	private ArrayList<Drawable> getFilterImages() {
 
 		ArrayList<Drawable> images = new ArrayList<Drawable>();
@@ -258,6 +275,10 @@ public class Filter extends Activity {
 		return images;
 	}
 
+	/**
+	 * Returns an array list of all the images of borders
+	 * @return
+	 */
 	private ArrayList<Drawable> getBorderImages() {
 
 		ArrayList<Drawable> images = new ArrayList<Drawable>();
@@ -276,6 +297,10 @@ public class Filter extends Activity {
 		session = null;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public Bitmap getBitmapImage() {
 
 		Bitmap selectedBitmap = null;

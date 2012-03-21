@@ -7,6 +7,7 @@ import android.graphics.Color;
 
 import com.pixem.R;
 import com.pixem.effects.BlackAndWhite;
+import com.pixem.effects.ColoredSquares;
 import com.pixem.effects.ColourFilter;
 import com.pixem.effects.Contrast;
 import com.pixem.effects.Effect;
@@ -27,6 +28,7 @@ public class EffectFactory {
 		effects.add(new ColourFilter(Color.argb(255, 0, 70, 0)));
 		effects.add(new ColourFilter(Color.argb(255, 0, 0, 70)));
 		effects.add(new ColourFilter(Color.argb(255, 100, 0, 100)));
+		effects.add(new ColoredSquares());
 		
 	}
 	
@@ -45,6 +47,7 @@ public class EffectFactory {
 		icons.add(R.drawable.f);
 		icons.add(R.drawable.g);
 		icons.add(R.drawable.h);
+		icons.add(R.drawable.i);
 		
 		return icons;
 	}
