@@ -26,9 +26,12 @@
  */
 package com.pixem.utility;
 
+import android.app.Activity;
+import android.app.ProgressDialog;
 import android.view.View;
 import android.view.View.OnClickListener;
 
+import com.pixem.R;
 import com.pixem.borders.Border;
 import com.pixem.core.PictureSession;
 
@@ -40,10 +43,12 @@ public class BorderListener implements OnClickListener {
 	
 	private Border border;
 	private PictureSession session;
+	private Activity activity;
 	
-	public BorderListener(Border b, PictureSession session) { 
-		border = b;
+	public BorderListener(Border border, PictureSession session, Activity activity) { 
+		this.border = border;
 		this.session = session;
+		this.activity = activity;
 	}
 	
 	/* (non-Javadoc)
@@ -51,8 +56,20 @@ public class BorderListener implements OnClickListener {
 	 */
 	@Override
 	public void onClick(View v) {
-		session.addBorder(border);
-		session.draw();
+      final ProgressDialog pd = ProgressDialog.show(activity, "", activity.getString(R.string.loading));
+        
+      new Thread() {
+            public void run() {
+                session.addBorder(border);
+                
+                activity.runOnUiThread(new Runnable() {
+                    public void run() {
+                        session.draw();
+                        pd.dismiss();
+                    }
+                });
+            }
+        }.start();
 	}
 
 }

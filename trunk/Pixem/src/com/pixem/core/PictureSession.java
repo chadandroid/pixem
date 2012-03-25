@@ -7,7 +7,6 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
 import android.graphics.Canvas;
-import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.os.Environment;
@@ -18,6 +17,7 @@ import android.widget.ImageView;
 import com.pixem.borders.Border;
 import com.pixem.borders.NullBorder;
 import com.pixem.effects.Effect;
+import com.pixem.utility.ColourUtil;
 
 /**
  * @author 10107896
@@ -25,26 +25,44 @@ import com.pixem.effects.Effect;
  */
 public class PictureSession {
 
+    private final static int DEFAULT_WIDTH = 240;
+    private final static int DEFAULT_HEIGHT = 320;
+    
+    private Bitmap realSize;
 	private Bitmap original;
 	private Bitmap current;
+	
+	private Effect effect;
 	private Border border;
 
-	private Bitmap smallImage; //for doing the previews and for faster generation
-	
 	private ImageView img;
 
 	public PictureSession(Bitmap bm, ImageView img) {
-		original = bm.copy(Config.ARGB_8888, true);
-		current = bm.copy(Config.ARGB_8888, true);
-
+	    double scale = calculateScale(bm.getWidth(), bm.getHeight());
+	    
+	    realSize = bm;
+        original = ColourUtil.scale(bm, scale, scale);
+        current = original.copy(Config.ARGB_8888, true);
+		
 		border = new NullBorder();
 
 		this.img = img;
-		
-		//makeSmallerImage(); //makes small icon image, sets smallerImage to it
 	}
 
-	public void applyEffect(Effect effect) {
+	
+
+    private double calculateScale(int width, int height) {        
+        if(width / DEFAULT_WIDTH >= height / DEFAULT_HEIGHT && width > DEFAULT_WIDTH) {
+            return DEFAULT_WIDTH * 1.0 / width;
+        } else if(width / DEFAULT_WIDTH < height / DEFAULT_HEIGHT && height > DEFAULT_HEIGHT) {
+            return DEFAULT_HEIGHT * 1.0 / height;
+        } else {
+            return 1;
+        }
+    }
+
+    public void applyEffect(Effect effect) {
+        this.effect = effect;
 		current = effect.applyEffect(original);
 	}
 
@@ -53,38 +71,14 @@ public class PictureSession {
 	}
 
 	public void draw() {
-		img.setImageBitmap(getCombined());
-	}
-
-	/**
-	 * http://www.anddev.org/resize_and_rotate_image_-_example-t621.html
-	 */
-	public void makeSmallerImage() { 
-	
-		if (current != null) { 
-			int orgWidth = current.getWidth();
-		    int orgHeight = current.getHeight();
-		    int newWidth = 100;
-		    int newHeight = 100;
-		    
-	        // calculate the scale - in this case = 0.4f
-	        float scaleWidth = ((float) newWidth) / orgWidth;
-	        float scaleHeight = ((float) newHeight) / orgHeight;
-	        
-	        // createa matrix for the manipulation and resize
-	        Matrix matrix = new Matrix();
-	        matrix.postScale(scaleWidth, scaleHeight);
-	        
-	        smallImage = Bitmap.createBitmap(current, 0, 0,
-                    newWidth, newHeight, matrix, true);
-		}
+		img.setImageBitmap(getCombined(current, false));
 	}
 	
 	public boolean save(Context context) {
 		String path = Environment.getExternalStorageDirectory().toString();
 		File file = new File(path, "pic.png");
 
-		Bitmap bmp = getCombined().copy(Config.ARGB_8888, true);
+		Bitmap bmp = getCombined(realSize, true);
 
 		try {
 			FileOutputStream out = new FileOutputStream(file);
@@ -105,27 +99,22 @@ public class PictureSession {
 		}
 	}
 
-	private Bitmap getCombined() {
+	private Bitmap getCombined(Bitmap bm, boolean applyEffect) {
 		// Copy effected image
-		Bitmap output = current.copy(Config.ARGB_8888, true);
+		Bitmap output = bm.copy(Config.ARGB_8888, true);
 
+		if(applyEffect && effect != null) {
+		    output = effect.applyEffect(output);
+		}
+		
 		Canvas canvas = new Canvas(output);
 		Rect rect = new Rect(0, 0, output.getWidth(), output.getHeight());
 
 		// Draw border on it
 		canvas.drawBitmap(
-				border.generateBorder(current.getWidth(), current.getHeight()),
+				border.generateBorder(output.getWidth(), output.getHeight()),
 				rect, rect, new Paint());
 
 		return output;
 	}
-	
-	/**
-	 * @return small image to perform the filters on,
-	 * but not the one that is to be saved
-	 */
-	private Bitmap getSmallImage() { 
-		return smallImage;
-	}
-
 }
