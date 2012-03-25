@@ -222,7 +222,7 @@ public class Filter extends Activity {
 			img.setPadding(5, 0, 5, 0);
 			img.setImageDrawable(d);
 			img.setOnClickListener(new EffectListener(effectFactory
-					.getEffect(counter++), session));
+					.getEffect(counter++), session, this));
 
 			layout.addView(img);
 		}
@@ -251,7 +251,7 @@ public class Filter extends Activity {
 			img.setPadding(5, 0, 5, 0);
 			img.setImageDrawable(d);
 			img.setOnClickListener(new BorderListener(borderFactory
-					.getBorder(counter++), session));
+					.getBorder(counter++), session, this));
 
 			layout.addView(img);
 		}

@@ -26,9 +26,12 @@
  */
 package com.pixem.utility;
 
+import android.app.Activity;
+import android.app.ProgressDialog;
 import android.view.View;
 import android.view.View.OnClickListener;
 
+import com.pixem.R;
 import com.pixem.core.PictureSession;
 import com.pixem.effects.Effect;
 
@@ -40,10 +43,12 @@ public class EffectListener implements OnClickListener {
 	
 	private Effect effect;
 	private PictureSession session;
+	private Activity activity;
 	
-	public EffectListener(Effect e, PictureSession session) { 
-		effect = e;
+	public EffectListener(Effect effect, PictureSession session, Activity activity) { 
+		this.effect = effect;
 		this.session = session;
+		this.activity = activity;
 	}
 	
 	/* (non-Javadoc)
@@ -51,8 +56,20 @@ public class EffectListener implements OnClickListener {
 	 */
 	@Override
 	public void onClick(View v) {
-		session.applyEffect(effect);
-		session.draw();
+	    final ProgressDialog pd = ProgressDialog.show(activity, "", activity.getString(R.string.loading));
+		
+	    new Thread() {
+	        public void run() {
+	            session.applyEffect(effect);
+	            
+	            activity.runOnUiThread(new Runnable() {
+                    public void run() {
+                        session.draw();
+                        pd.dismiss();
+                    }
+                });
+	        }
+	    }.start();
 	}
 
 }

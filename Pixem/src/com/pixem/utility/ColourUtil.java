@@ -1,7 +1,6 @@
 package com.pixem.utility;
 
 import android.graphics.Bitmap;
-import android.graphics.Matrix;
 import android.graphics.Bitmap.Config;
 import android.graphics.Color;
 
@@ -45,21 +44,7 @@ public class ColourUtil {
 		return null;
 	}
 	
-	public static Bitmap getResizedBitmap(Bitmap bm, int width, int height, float scaleWidth, float scaleHeight) { 
-		
-		if (bm != null) { 
-			Bitmap modifiedBitmap = bm.copy(Config.ARGB_8888, true);
-		    
-	        // createa matrix for the manipulation and resize
-	        Matrix matrix = new Matrix();
-	        matrix.postScale(scaleWidth, scaleHeight);
-	        
-	        modifiedBitmap = Bitmap.createBitmap(modifiedBitmap, 0, 0,
-                    width, height, matrix, true);
-			
-	        return modifiedBitmap;
-		}
-		
-		return null;
-	}
+	public static Bitmap scale(Bitmap bm, double widthScale, double heightScale) {
+        return Bitmap.createScaledBitmap(bm, (int)(bm.getWidth() * widthScale), (int)(bm.getHeight() * heightScale), false);
+    }
 }

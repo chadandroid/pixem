@@ -46,30 +46,28 @@ public class ColoredSquares implements Effect {
 	@Override
 	public Bitmap applyEffect(Bitmap bm) {
 		
-		Bitmap b1 = bm.copy(Config.ARGB_8888, true);
-		Bitmap b2 = bm.copy(Config.ARGB_8888, true);
-		Bitmap b3 = bm.copy(Config.ARGB_8888, true);
-		Bitmap b4 = bm.copy(Config.ARGB_8888, true);
+		Bitmap newBitmap = bm.copy(Config.ARGB_8888, true);
 		
-		Log.d("", "- about to resize images, width/height:"+ b1.getWidth()+"/"+b1.getHeight());
-		
-		b1 = ColourUtil.getResizedBitmap(b1, b1.getWidth(), b1.getHeight(), 1.0f, 1.0f);
-		b2 = ColourUtil.getResizedBitmap(b2, b2.getWidth(), b2.getHeight(), 1.0f, 1.0f);
-		b3 = ColourUtil.getResizedBitmap(b3, b3.getWidth(), b3.getHeight(), 0.8f, 0.8f);
-		b4 = ColourUtil.getResizedBitmap(b4, b4.getWidth(), b4.getHeight(), 0.8f, 0.8f);
+		Bitmap b1 = ColourUtil.scale(bm, 0.5, 0.5);
+		Bitmap b2 = ColourUtil.scale(bm, 0.5, 0.5);
+		Bitmap b3 = ColourUtil.scale(bm, 0.5, 0.5);
+		Bitmap b4 = ColourUtil.scale(bm, 0.5, 0.5);
 
 		Log.d("", "- images resized, b1 is: " + b1.getWidth() + " " + b1.getHeight());
-		ColourFilter filter = new ColourFilter(Color.argb(255, 250, 0, 0));
+		
+		
+		ColourFilter filter = new ColourFilter(Color.argb(255, 196, 50, 50));
 		b1 = filter.applyEffect(b1);
 		
-		filter.setColour(Color.argb(255, 0, 250, 0));
+		filter.setColour(Color.argb(255, 50, 108, 50));
 		b2 = filter.applyEffect(b2);
 		
-		filter.setColour(Color.argb(255, 0, 0, 250));
+		filter.setColour(Color.argb(255, 50, 50, 128));
 		b3 = filter.applyEffect(b3);
 		
-		filter.setColour(Color.argb(255, 70, 30, 70));
+		filter.setColour(Color.argb(255, 140, 40, 140));
 		b4 = filter.applyEffect(b4);
+		
 		
 		// Get your images from their files
 		//Bitmap bottomImage = new BitmapFactory.decodeFile("myFirstPNG.png");
@@ -83,21 +81,13 @@ public class ColoredSquares implements Effect {
 		// Then draw the second on top of that
 		//comboImage.drawBitmap(topImage, 0f, 0f, null);
 		
-		Canvas comboImage = new Canvas(b2);
-		comboImage.drawBitmap(b1, 0f, 0f, null);
-
-		// bottomImage is now a composite of the two. 
-
-		// To write the file out to the SDCard:
-		//OutputStream os = null;
-		//try {
-		//    os = new FileOutputStream("/sdcard/DCIM/Camera/" + "myNewFileName.png");
-		//    image.compress(CompressFormat.PNG, 50, os)
-		//} catch(IOException e) {
-		 //   e.printStackTrace();
-		//}
+		Canvas comboImage = new Canvas(newBitmap);
+		comboImage.drawBitmap(b1, 0, 0, null);
+		comboImage.drawBitmap(b2, b1.getWidth(), 0, null);
+		comboImage.drawBitmap(b3, 0, b1.getHeight(), null);
+		comboImage.drawBitmap(b4, b1.getWidth(), b1.getHeight(), null);
 		
-		return b2;
+		return newBitmap;
 	}
 
 }
