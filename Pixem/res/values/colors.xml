@@ -5,4 +5,7 @@
         <color name="white">#FFFFFF</color>
         <color name="blue">#0000FF</color>
         <color name="green">#00FF00</color>
+        <color name="pixem_blue">#1b7fb4</color>
+        <color name="pixem_purple">#991bb4</color>
+        <color name="save_blue">#336F8B</color>
     </resources>

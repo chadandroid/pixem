@@ -41,10 +41,10 @@ import com.facebook.android.Facebook;
 import com.facebook.android.FacebookError;
 import com.facebook.android.LoginButton;
 import com.facebook.android.SessionEvents;
-import com.facebook.android.SessionStore;
-import com.facebook.android.Util;
 import com.facebook.android.SessionEvents.AuthListener;
 import com.facebook.android.SessionEvents.LogoutListener;
+import com.facebook.android.SessionStore;
+import com.facebook.android.Util;
 import com.pixem.R;
 
 

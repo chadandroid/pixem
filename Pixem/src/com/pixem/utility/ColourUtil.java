@@ -3,6 +3,8 @@ package com.pixem.utility;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 
 /**
  * @author Saman Alvi
@@ -47,4 +49,14 @@ public class ColourUtil {
 	public static Bitmap scale(Bitmap bm, double widthScale, double heightScale) {
         return Bitmap.createScaledBitmap(bm, (int)(bm.getWidth() * widthScale), (int)(bm.getHeight() * heightScale), false);
     }
+	
+	public static Drawable scaleDrawable(Drawable drawable, double d, double e) {
+		
+	    Bitmap bm = ((BitmapDrawable) drawable).getBitmap();
+	    
+	    return (new BitmapDrawable(scale(bm, d, e)));
+	    //Bitmap bitmapOrig = Bitmap.createScaledBitmap(bm, width, height, false);
+	    //return new BitmapDrawable(bitmapOrig);
+	
+	}
 }

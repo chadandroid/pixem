@@ -43,14 +43,16 @@ import android.view.ViewGroup.LayoutParams;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.HorizontalScrollView;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.pixem.R;
-import com.pixem.core.EffectFactory;
 import com.pixem.core.BorderFactory;
+import com.pixem.core.EffectFactory;
 import com.pixem.core.PictureSession;
 import com.pixem.utility.BorderListener;
+import com.pixem.utility.ColourUtil;
 import com.pixem.utility.DialogUtil;
 import com.pixem.utility.EffectListener;
 
@@ -61,7 +63,7 @@ import com.pixem.utility.EffectListener;
 public class Filter extends Activity {
 
 	private LinearLayout layoutEffects = null;
-	private Button saveButton;
+	private ImageButton saveButton;
 
 	private EffectFactory effectFactory;
 	private BorderFactory borderFactory;
@@ -83,7 +85,7 @@ public class Filter extends Activity {
 					}
 				});
 
-		saveButton = (Button) findViewById(R.id.btnSave);
+		saveButton = (ImageButton) findViewById(R.id.btnSave);
 
 		saveButton.setOnClickListener(new OnClickListener() {
 
@@ -269,7 +271,8 @@ public class Filter extends Activity {
 		ArrayList<Drawable> images = new ArrayList<Drawable>();
 
 		for (Integer i : effectFactory.getEffectIcons()) {
-			images.add(getApplicationContext().getResources().getDrawable(i));
+			Drawable d = getApplicationContext().getResources().getDrawable(i);
+			images.add(ColourUtil.scaleDrawable(d, 0.85, 0.85));
 		}
 
 		return images;

@@ -16,12 +16,6 @@
 
 package com.facebook.android;
 
-import com.facebook.android.BaseRequestListener;
-import com.facebook.android.SessionEvents.AuthListener;
-import com.facebook.android.SessionEvents.LogoutListener;
-import com.facebook.android.Facebook.DialogListener;
-import com.pixem.R;
-
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
@@ -30,6 +24,11 @@ import android.os.Handler;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ImageButton;
+
+import com.facebook.android.Facebook.DialogListener;
+import com.facebook.android.SessionEvents.AuthListener;
+import com.facebook.android.SessionEvents.LogoutListener;
+import com.pixem.R;
 
 public class LoginButton extends ImageButton {
     
