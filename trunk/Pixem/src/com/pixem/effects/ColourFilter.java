@@ -27,8 +27,8 @@
 package com.pixem.effects;
 
 import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.graphics.Bitmap.Config;
+import android.graphics.Color;
 
 /**
  * @author Saman Alvi
