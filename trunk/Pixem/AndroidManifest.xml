@@ -13,15 +13,15 @@
     <uses-feature android:name="android.hardware.camera" />
     
     <application android:icon="@drawable/icon" android:label="@string/app_name">
-        <activity android:name="com.pixem.core.activity.MainMenu"
-                  android:label="@string/app_name" android:screenOrientation="portrait">
+        <activity android:name=".core.activity.Launch"  android:label="@string/app_name"  android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name="com.pixem.core.activity.Filter" android:screenOrientation="portrait"></activity>
-        <activity android:name="com.pixem.core.activity.Gallery"></activity>
-        <activity android:name="com.pixem.core.activity.Example"></activity>
+        <activity android:name="com.pixem.core.activity.Gallery" android:screenOrientation="portrait"></activity>
+        <activity android:name="com.pixem.core.activity.Example" android:screenOrientation="portrait"></activity>
+        <activity android:name="com.pixem.core.activity.MainMenu" android:screenOrientation="portrait"></activity>
     </application>
 </manifest>
