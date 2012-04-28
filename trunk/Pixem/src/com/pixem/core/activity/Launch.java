@@ -52,7 +52,7 @@ public class Launch extends Activity {
 	public void onResume() { 
 		super.onResume();
 		
-		new CountDownTimer(30000, 1000) {
+		new CountDownTimer(3000, 1000) {
 
 		     public void onTick(long millisUntilFinished) {
 		     }

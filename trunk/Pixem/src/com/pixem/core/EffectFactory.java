@@ -13,6 +13,7 @@ import com.pixem.effects.Contrast;
 import com.pixem.effects.Effect;
 import com.pixem.effects.NullEffect;
 import com.pixem.effects.Sepia;
+import com.pixem.effects.Sketch;
 
 public class EffectFactory {
 	
@@ -29,6 +30,7 @@ public class EffectFactory {
 		effects.add(new ColourFilter(Color.argb(255, 0, 0, 70)));
 		effects.add(new ColourFilter(Color.argb(255, 100, 0, 100)));
 		effects.add(new ColoredSquares());
+		effects.add(new Sketch());
 		
 	}
 	
@@ -48,6 +50,7 @@ public class EffectFactory {
 		icons.add(R.drawable.g);
 		icons.add(R.drawable.h);
 		icons.add(R.drawable.i);
+		icons.add(R.drawable.k);
 		
 		return icons;
 	}
