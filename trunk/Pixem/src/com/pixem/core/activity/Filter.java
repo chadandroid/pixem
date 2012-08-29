@@ -76,15 +76,6 @@ public class Filter extends Activity {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.filter_screen);
 
-		((Button) findViewById(R.id.btnBack))
-				.setOnClickListener(new View.OnClickListener() {
-
-					@Override
-					public void onClick(View v) {
-						finish();
-					}
-				});
-
 		saveButton = (ImageButton) findViewById(R.id.btnSave);
 
 		saveButton.setOnClickListener(new OnClickListener() {

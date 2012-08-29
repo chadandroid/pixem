@@ -63,6 +63,7 @@ public class Launch extends Activity {
 		    	 startActivity(intent);
 		     }
 		  }.start();
+		  finish();
 	}
 
 }
