@@ -55,8 +55,6 @@ public class ColourUtil {
 	    Bitmap bm = ((BitmapDrawable) drawable).getBitmap();
 	    
 	    return (new BitmapDrawable(scale(bm, d, e)));
-	    //Bitmap bitmapOrig = Bitmap.createScaledBitmap(bm, width, height, false);
-	    //return new BitmapDrawable(bitmapOrig);
 	
 	}
 }

@@ -35,6 +35,7 @@ public class Sketch implements Effect {
 	
 	public Bitmap applyEffect(Bitmap bm) { 
 		
+		
 		int clr, red = 0, blue = 0, green = 0;
 			Bitmap modifiedBitmap = bm.copy(Config.ARGB_8888, true);
 			
